@@ -1,8 +1,36 @@
-const url = 'https://nounswidgets.wtf/scripts/shared/auto-install.js'
+const url = 'https://nounswidgets.wtf/scripts/shared/auto-main.js'
 const icon = 'user-astronaut'
 const color = 'red'
 
-const version = 2
+const version = 1
+
+// async function checkForUpdates() {
+//     const url = "https://example.com/myscript/version.json";
+//     const response = await new Request(url).loadString();
+//     const latestVersion = Number(response);
+//     if (latestVersion > version) {
+//         const updateUrl = "https://example.com/myscript/myscript.js";
+//         const updateResponse = await new Request(updateUrl).loadString();
+//         FileManager.iCloud().writeString("myscript.js", updateResponse);
+//         console.log("Updated to version " + latestVersion);
+//         return true;
+//     } else {
+//         console.log("Up to date");
+//         return false;
+//     }
+// }
+
+// (async () => {
+//     const needsUpdate = await checkForUpdates();
+//     if (needsUpdate) {
+//         // Restart the script to load the new version
+//         const fm = FileManager.iCloud();
+//         const path = fm.joinPath(fm.documentsDirectory(), Script.name());
+//         app.openURL("scriptable:///run/" + encodeURIComponent(path));
+//         return;
+//     }
+//     // The rest of your script goes here
+// })();
 
 await update()
 
