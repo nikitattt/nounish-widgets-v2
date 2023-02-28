@@ -2,7 +2,7 @@ const url = 'https://nounswidgets.wtf/scripts/shared/auto-main.js'
 const icon = 'user-astronaut'
 const color = 'red'
 
-const version = 1
+const version = 2
 
 // async function checkForUpdates() {
 //     const url = "https://example.com/myscript/version.json";
