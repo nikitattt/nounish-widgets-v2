@@ -1,0 +1,87 @@
+{
+  "nouns": [
+    {
+      "slug": "small-auction",
+      "title": "Auction Widget",
+      "description": "Keep an eye on nouns auction",
+      "widgetIconImage": "/img/nouns/small-auction/icon.png",
+      "widgetPromoImage": "/img/nouns/small-auction/main.png",
+      "script": {
+        "path": "/scripts/nouns/small-auction.js",
+        "fileName": "small-auction.js"
+      },
+      "size": "medium",
+      "type": "general",
+      "additionalSizes": [
+        {
+          "size": "",
+          "image": ""
+        }
+      ],
+      "meta": {
+        "title": "Auction and Governance Widget",
+        "description": "Keep an eye on nouns auction and active props",
+        "shareImage": "https://iamng.wtf/img/widgets/nouns-medium/main.png",
+        "url": "https://iamng.wtf/widgets/nouns-medium",
+        "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
+      },
+      "updates": []
+    },
+    {
+      "slug": "medium-general",
+      "title": "Nouns Auction and Governance Widget",
+      "description": "Keep an eye on nouns auction and active props",
+      "widgetIconImage": "/img/nouns/medium-general/icon.png",
+      "widgetPromoImage": "/img/nouns/medium-general/main.png",
+      "script": {
+        "path": "/scripts/nouns/medium-general.js",
+        "fileName": "medium-general.js"
+      },
+      "size": "medium",
+      "type": "general",
+      "additionalSizes": [
+        {
+          "size": "",
+          "image": ""
+        }
+      ],
+      "meta": {
+        "title": "Nouns Auction and Governance Widget",
+        "description": "Keep an eye on nouns auction and active props",
+        "shareImage": "https://iamng.wtf/img/widgets/nouns-medium/main.png",
+        "url": "https://iamng.wtf/widgets/nouns-medium",
+        "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
+      },
+      "updates": []
+    },
+    {
+      "slug": "auto-install-test",
+      "title": "Auto Install Test",
+      "description": "Test auto install and auto update widget",
+      "widgetIconImage": "/img/nouns/small-auction/icon.png",
+      "widgetPromoImage": "/img/nouns/small-auction/main.png",
+      "script": {
+        "path": "/scripts/shared/auto-install.js",
+        "fileName": "auto-install.js"
+      },
+      "size": "medium",
+      "type": "general",
+      "additionalSizes": [
+        {
+          "size": "",
+          "image": ""
+        }
+      ],
+      "meta": {
+        "title": "Auction and Governance Widget",
+        "description": "Keep an eye on nouns auction and active props",
+        "shareImage": "https://iamng.wtf/img/widgets/nouns-medium/main.png",
+        "url": "https://iamng.wtf/widgets/nouns-medium",
+        "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
+      },
+      "updates": []
+    }
+  ],
+  "lilNouns": [],
+  "propHouse": []
+}
