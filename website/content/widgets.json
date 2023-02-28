@@ -62,7 +62,11 @@
       "widgetPromoImage": "/img/nouns/small-auction/main.png",
       "script": {
         "path": "/scripts/shared/auto-install.js",
-        "fileName": "auto-install.js"
+        "fileName": "auto-install.js",
+        "urlPath": "/scripts/nouns/auto",
+        "name": "NounsAutoInstallTest",
+        "icon": "vial",
+        "color": "red"
       },
       "size": "medium",
       "type": "general",

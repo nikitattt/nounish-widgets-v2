@@ -5,6 +5,25 @@ import useDownloader from 'react-use-downloader'
 
 import widgets from '../../content/widgets.json'
 
+const installerHeader = (
+  name: string,
+  urlPath: string,
+  icon: string,
+  color: string
+) => {
+  return `
+    // ${name} Widget
+    // Paste it into Scriptable app
+    // And hit Run ▶ (bottom-right)
+
+    const scriptName = '${name}'
+    const urlPath = '${urlPath}'
+    const icon = '${icon}'
+    const color = '${color}'
+
+  `
+}
+
 const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
   const { data } = props
 
@@ -96,9 +115,19 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
             className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
             onClick={() => {
               // const file = new File(Bloc, '')
-              fetch(data.script.path)
+              fetch('/scripts/shared/installer.js')
                 .then((r) => r.text())
                 .then((text) => {
+                  const scriptHeader = installerHeader(
+                    data.script.name,
+                    data.script.urlPath,
+                    data.script.icon,
+                    data.script.color
+                  )
+                  text = scriptHeader + text
+                  console.log({
+                    text: text
+                  })
                   if (
                     navigator.canShare &&
                     navigator.canShare({
