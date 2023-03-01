@@ -63,7 +63,7 @@
       "script": {
         "path": "/scripts/shared/auto-install.js",
         "fileName": "auto-install.js",
-        "urlPath": "/scripts/nouns/auto",
+        "urlPath": "https://nounswidgets.wtf/scripts/nouns/auto",
         "name": "NounsAutoInstallTest",
         "icon": "vial",
         "color": "red"
