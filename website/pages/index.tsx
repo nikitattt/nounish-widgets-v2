@@ -117,8 +117,15 @@ const Home: NextPage<{ data: any }> = (props) => {
         <h1 className="mt-16 text-center text-6xl font-black tracking-tight">
           Nounish Widgets
         </h1>
-        <p className="mt-12 text-center text-purple font-semibold text-xl">
-          Never miss important events in Nouns ecosystem
+        <p className="mt-12 text-center font-bold text-3xl max-w-lg mx-auto leading-relaxed">
+          <span className="bg-fuchsia/30 py-1 px-2 rounded-lg">Never miss</span>{' '}
+          important{' '}
+          <span className="bg-blue/30 py-1 px-2 rounded-lg">events</span> in
+          Nouns ecosystem
+          <br />
+          <span className="bg-red/40 py-1 px-2 rounded-lg">
+            With iOS widgets
+          </span>
         </p>
         <h2 className="mt-20 text-center text-3xl font-bold">Nouns DAO</h2>
         <div className="mt-40 flex flex-col gap-40 max-w-2xl mx-auto">
