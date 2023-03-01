@@ -29,7 +29,7 @@ const WidgetLink = ({
           <img
             alt=""
             className="rounded-xl h-40 w-auto"
-            src={widget.widgetIconImage}
+            src={widget.images.icon}
           />
         </div>
         <div className="flex-1">
@@ -39,7 +39,11 @@ const WidgetLink = ({
             </p>
             <Link
               href={`/${family}/${slug}`}
-              className="w-max border-2 border-black py-1 px-4 rounded-lg"
+              className="w-max border-2 py-1 px-4 rounded-lg"
+              style={{
+                borderColor: widget.theme.accent,
+                color: widget.theme.accent
+              }}
             >
               <div className="flex flex-row gap-1 w-max items-center">
                 <p>Install</p>

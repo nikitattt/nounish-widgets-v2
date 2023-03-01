@@ -4,8 +4,11 @@
       "slug": "small-auction",
       "title": "Auction Widget",
       "description": "Keep an eye on nouns auction",
-      "widgetIconImage": "/img/nouns/small-auction/icon.png",
-      "widgetPromoImage": "/img/nouns/small-auction/main.png",
+      "images": {
+        "promoFull": "/img/nouns/small-auction/main.png",
+        "promoShort": "/img/nouns/small-auction/main.png",
+        "icon": "/img/nouns/small-auction/icon.png"
+      },
       "script": {
         "path": "/scripts/nouns/small-auction.js",
         "fileName": "small-auction.js"
@@ -25,14 +28,22 @@
         "url": "https://iamng.wtf/widgets/nouns-medium",
         "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
       },
-      "updates": []
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#3757FF",
+        "secondary": "#FFC700"
+      }
     },
     {
       "slug": "medium-general",
       "title": "Nouns Auction and Governance Widget",
       "description": "Keep an eye on nouns auction and active props",
-      "widgetIconImage": "/img/nouns/medium-general/icon.png",
-      "widgetPromoImage": "/img/nouns/medium-general/main.png",
+      "images": {
+        "promoFull": "/img/nouns/medium-general/main.png",
+        "promoShort": "/img/nouns/medium-general/main.png",
+        "icon": "/img/nouns/medium-general/icon.png"
+      },
       "script": {
         "path": "/scripts/nouns/medium-general.js",
         "fileName": "medium-general.js"
@@ -52,14 +63,22 @@
         "url": "https://iamng.wtf/widgets/nouns-medium",
         "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
       },
-      "updates": []
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#3757FF",
+        "secondary": "#FFC700"
+      }
     },
     {
       "slug": "auto-install-test",
       "title": "Auto Install Test",
       "description": "Test auto install and auto update widget",
-      "widgetIconImage": "/img/nouns/small-auction/icon.png",
-      "widgetPromoImage": "/img/nouns/small-auction/main.png",
+      "images": {
+        "promoFull": "/img/nouns/small-auction/main.png",
+        "promoShort": "/img/nouns/small-auction/main.png",
+        "icon": "/img/nouns/small-auction/icon.png"
+      },
       "script": {
         "path": "/scripts/shared/auto-install.js",
         "fileName": "auto-install.js",
@@ -83,7 +102,12 @@
         "url": "https://iamng.wtf/widgets/nouns-medium",
         "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
       },
-      "updates": []
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#3757FF",
+        "secondary": "#FFC700"
+      }
     }
   ],
   "lilNouns": [],

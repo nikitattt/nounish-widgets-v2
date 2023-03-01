@@ -42,82 +42,78 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
       </Head>
 
       <main className="max-w-screen-md mx-auto my-20 text-center text-lg px-8">
-        <div className="w-56 h-28 mx-auto mb-20 shadow-lg rounded-2xl">
-          <Image alt="" src={data.widgetIconImage} height={485} width={970} />
-        </div>
-        <h1 className="font-black text-5xl text-red">{data.title}</h1>
-        <div className="mt-4 text-2xl">{data.description}</div>
-        <div className="mt-16">
+        {/* <div className="w-28 h-28 mx-auto mb-20 shadow-xl rounded-2xl shadow-sky/10">
+          <Image alt="" src={data.images.icon} height={485} width={485} />
+        </div> */}
+        <h1
+          className="mt-0 sm:mt-12 font-black text-5xl sm:text-6xl"
+          style={{ color: data.theme.accent }}
+        >
+          {data.title}
+        </h1>
+        <div className="mt-4 text-xl sm:text-2xl">{data.description}</div>
+        <div className="mt-20 max-w-sm mx-auto">
           <Image
             alt=""
             className="rounded-xl"
-            src={data.widgetPromoImage}
-            height={800}
-            width={1200}
+            src={data.images.promoFull}
+            // height={681}
+            height={1220}
+            width={604}
           />
         </div>
         <div className="mt-10">The how-to👇</div>
-        <div className="text-6xl font-black p-10 text-yellow">1</div>
+        <div
+          className="text-6xl font-black p-10"
+          style={{ color: data.theme.accent }}
+        >
+          1
+        </div>
         <div className="mt-2">
           Download the Scriptable app. It's required to create a widget.
         </div>
-        <div className="flex flex-row gap-1 items-baseline justify-center">
-          <div className="mt-2">Link:</div>
+        <div className="mt-8">
           <a
-            className="cursor-pointer"
+            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
+            style={{
+              background: 'white',
+              color: data.theme.accent,
+              borderColor: data.theme.accent
+            }}
             target="_blank"
             href={'https://apps.apple.com/us/app/scriptable/id1405459188?uo=4'}
           >
-            <p className="text-blue underline">App Store</p>
+            App Store
           </a>
         </div>
-        <div className="mt-4">
+        <div className="-mx-6 mt-4">
           <Image
             alt=""
             className="rounded-xl"
-            src="/img/widgets/shared/scriptable.png"
+            src="/img/shared/scriptable.png"
             height={793}
             width={1291}
           />
         </div>
-        <div className="text-6xl font-black p-10 text-yellow">2</div>
-        <div className="mt-2">Download widget code!</div>
-        <div className="mt-6 flex flex-col gap-1 items-center justify-center">
-          {/* <a
-                        className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
-                        ref={copyCodeButtonRef}
-                        data-tip='Copied!'
-                        onClick={() => {
-                            fetch(data.widgetCode)
-                                .then((r) => r.text())
-                                .then((text) => {
-                                    navigator.clipboard.writeText(String(text)).then(() => {
-                                        if (copyCodeButtonRef.current) {
-                                            ReactTooltip.show(copyCodeButtonRef.current)
-                                        }
-                                    })
-                                })
-                        }}
-                    >
-                        <p className="font-bold">Copy Code</p>
-                    </a> */}
+        <div
+          className="mt-12 text-6xl font-black p-10"
+          style={{ color: data.theme.accent }}
+        >
+          2
+        </div>
+        <div className="mt-2">Save the widget code!</div>
+        <div className="mt-6">
           <button
-            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
+            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
+            style={{
+              background: 'white',
+              color: data.theme.accent,
+              borderColor: data.theme.accent
+            }}
             onClick={() => {
-              // const file = new File(Bloc, '')
-              fetch('/scripts/shared/installer.js')
+              fetch(data.script.path)
                 .then((r) => r.text())
                 .then((text) => {
-                  const scriptHeader = installerHeader(
-                    data.script.name,
-                    data.script.urlPath,
-                    data.script.icon,
-                    data.script.color
-                  )
-                  text = scriptHeader + text
-                  console.log({
-                    text: text
-                  })
                   if (
                     navigator.canShare &&
                     navigator.canShare({
@@ -126,33 +122,26 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
                   ) {
                     navigator.share({
                       text: text
-                      // files: [data.script.path]
                     })
                   } else {
-                    window.alert('cannot share')
+                    window.alert(
+                      'Cannot share the script code. Open it on iPhone or iPad.'
+                    )
                   }
                 })
-
-              // download(data.script.path, data.script.fileName)
             }}
           >
-            <p className="font-bold">Save Text</p>
+            Copy
           </button>
-          <button
-            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
-            onClick={() => {
-              download(data.script.path, data.script.fileName)
-            }}
-          >
-            <p className="font-bold">Download</p>
-          </button>
-          <div>- - - - - - - - - </div>
-          <a
-            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
-            href={`scriptable:///add`}
-          >
-            <p className="font-bold">Create Script</p>
-          </a>
+          <div className="-mx-6 mt-4">
+            <Image
+              alt=""
+              className="rounded-xl"
+              src="/img/shared/save-copy.png"
+              height={793}
+              width={1291}
+            />
+          </div>
         </div>
         {/* <div className="mt-2 flex flex-row gap-1 items-baseline justify-center text-sm">
                     <a
@@ -163,6 +152,96 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
                         <p className="text-blue underline">View Raw</p>
                     </a>
                 </div> */}
+        <div
+          className="mt-12 text-6xl font-black p-10"
+          style={{ color: data.theme.accent }}
+        >
+          3
+        </div>
+        <div className="mt-2">
+          Now create a script, give it a title and page the script code.
+        </div>
+        <div className="mt-8 flex justify-center">
+          <a
+            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
+            style={{
+              background: 'white',
+              color: data.theme.accent,
+              borderColor: data.theme.accent
+            }}
+            href={`scriptable:///add`}
+          >
+            Create Script
+          </a>
+        </div>
+        <div className="-mx-6 mt-4">
+          <Image
+            alt=""
+            className="rounded-xl"
+            src="/img/shared/add-code.png"
+            height={793}
+            width={1291}
+          />
+        </div>
+        <div
+          className="mt-12 text-6xl font-black p-10"
+          style={{ color: data.theme.accent }}
+        >
+          4
+        </div>
+        <div className="mt-2">
+          Next, add a Small or Big sized Scriptable widget to one of your
+          screens.
+          <br />
+          <br />
+          After you have added it to the screen, long press on it to open its
+          "settings" and click "Edit Widget".
+        </div>
+        <div className="-mx-6 mt-4">
+          <Image
+            alt=""
+            className="rounded-xl"
+            src="/img/shared/edit-widget.png"
+            height={793}
+            width={1291}
+          />
+        </div>
+        <div
+          className="mt-12 text-6xl font-black p-10"
+          style={{ color: data.theme.accent }}
+        >
+          5
+        </div>
+        <div className="mt-2">Select the script you have created above.</div>
+        <div className="-mx-6 mt-4">
+          <Image
+            alt=""
+            className="rounded-xl"
+            src="/img/shared/choose-script.png"
+            height={793}
+            width={1291}
+          />
+        </div>
+        <div
+          className="mt-12 text-6xl font-black p-10"
+          style={{ color: data.theme.accent }}
+        >
+          6
+        </div>
+        <div className="mt-2">All good now!</div>
+        <div className="mt-2">
+          Every day you will enjoy new amazing artpiece!
+        </div>
+        <div className="mt-4 max-w-sm mx-auto">
+          <Image
+            alt=""
+            className="rounded-xl"
+            src={data.images.promoShort}
+            height={681}
+            width={604}
+          />
+        </div>
+        <p className="mt-20 font-medium">Enjoy the Art✨</p>
       </main>
 
       <footer className="flex mb-20"></footer>
