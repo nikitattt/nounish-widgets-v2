@@ -19,7 +19,7 @@ w.presentSmall()
 
 async function update() {
     let req = new Request(`${urlPath}/versions.json`);
-    let versions = await req.loadJson();
+    let versions = await req.loadJSON();
     if (versions.latestVersion > version) {
         fileManager = FileManager.iCloud()
         documentsDirectory = fileManager.documentsDirectory()
