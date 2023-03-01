@@ -10,25 +10,32 @@
         "icon": "/img/nouns/small-auction/icon.png"
       },
       "script": {
-        "path": "/scripts/nouns/small-auction.js",
-        "fileName": "small-auction.js"
+        "urlPath": "https://nounswidgets.wtf/scripts/nouns/small-auction",
+        "name": "Nouns Auction Small",
+        "icon": "magic",
+        "color": "blue"
       },
-      "size": "medium",
+      "size": "small",
       "type": "general",
       "additionalSizes": [
         {
-          "size": "",
+          "size": "big",
           "image": ""
         }
       ],
       "meta": {
-        "title": "Auction and Governance Widget",
-        "description": "Keep an eye on nouns auction and active props",
-        "shareImage": "https://iamng.wtf/img/widgets/nouns-medium/main.png",
-        "url": "https://iamng.wtf/widgets/nouns-medium",
-        "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
+        "title": "Nouns Auction Widget",
+        "description": "Keep an eye on nouns auction",
+        "shareImage": "https://nounswidgets.wtf/img/nouns/small-auction/share.png",
+        "url": "https://nounswidgets.wtf/nouns/small-auction",
+        "twitterShare": ""
       },
-      "updates": [],
+      "updates": [
+        {
+          "version": 2,
+          "text": "Last update text added"
+        }
+      ],
       "theme": {
         "background": "#FFF",
         "accent": "#3757FF",
