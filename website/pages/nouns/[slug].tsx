@@ -11,8 +11,7 @@ const installerHeader = (
   icon: string,
   color: string
 ) => {
-  return `
-    // ${name} Widget
+  return `// ${name} Widget
     // Paste it into Scriptable app
     // And hit Run ▶ (bottom-right)
 
