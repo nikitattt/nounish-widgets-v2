@@ -68,7 +68,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         <div className="mt-10">The how-to👇</div>
         <div
           className="text-6xl font-black p-10"
-          style={{ color: data.theme.accent }}
+          style={{ color: data.theme.secondary }}
         >
           1
         </div>
@@ -101,7 +101,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         </div>
         <div
           className="mt-12 text-6xl font-black p-10"
-          style={{ color: data.theme.accent }}
+          style={{ color: data.theme.secondary }}
         >
           2
         </div>
@@ -160,7 +160,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
                 </div> */}
         <div
           className="mt-12 text-6xl font-black p-10"
-          style={{ color: data.theme.accent }}
+          style={{ color: data.theme.secondary }}
         >
           3
         </div>
@@ -186,7 +186,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         </div>
         <div
           className="mt-12 text-6xl font-black p-10"
-          style={{ color: data.theme.accent }}
+          style={{ color: data.theme.secondary }}
         >
           4
         </div>
@@ -210,7 +210,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         </div>
         <div
           className="mt-12 text-6xl font-black p-10"
-          style={{ color: data.theme.accent }}
+          style={{ color: data.theme.secondary }}
         >
           5
         </div>
