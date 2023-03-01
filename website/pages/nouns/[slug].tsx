@@ -2,6 +2,8 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import useDownloader from 'react-use-downloader'
+import { Button } from '../../components/Button'
+import NavBar from '../../components/NavBar'
 
 import widgets from '../../content/widgets.json'
 
@@ -41,6 +43,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         <meta property="og:description" content={data.title} />
       </Head>
 
+      <NavBar />
       <main className="max-w-screen-md mx-auto my-20 text-center text-lg px-8">
         {/* <div className="w-28 h-28 mx-auto mb-20 shadow-xl rounded-2xl shadow-sky/10">
           <Image alt="" src={data.images.icon} height={485} width={485} />
@@ -73,18 +76,19 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           Download the Scriptable app. It's required to create a widget.
         </div>
         <div className="mt-8">
-          <a
-            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
-            style={{
-              background: 'white',
-              color: data.theme.accent,
-              borderColor: data.theme.accent
-            }}
-            target="_blank"
-            href={'https://apps.apple.com/us/app/scriptable/id1405459188?uo=4'}
+          <Button
+            color={data.theme.accent}
+            onClick={() =>
+              window
+                .open(
+                  'https://apps.apple.com/us/app/scriptable/id1405459188?uo=4',
+                  '_blank'
+                )
+                ?.focus()
+            }
           >
             App Store
-          </a>
+          </Button>
         </div>
         <div className="-mx-6 mt-4">
           <Image
@@ -103,13 +107,8 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         </div>
         <div className="mt-2">Save the widget code!</div>
         <div className="mt-6">
-          <button
-            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
-            style={{
-              background: 'white',
-              color: data.theme.accent,
-              borderColor: data.theme.accent
-            }}
+          <Button
+            color={data.theme.accent}
             onClick={() => {
               fetch('/scripts/shared/installer.js')
                 .then((r) => r.text())
@@ -139,8 +138,8 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
             }}
           >
             Copy
-          </button>
-          <div className="-mx-6 mt-4">
+          </Button>
+          <div className="-mx-6 mt-10">
             <Image
               alt=""
               className="rounded-xl"
@@ -169,19 +168,14 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           Now create script, paste the copied code and click Run ▶
         </div>
         <div className="mt-8 flex justify-center">
-          <a
-            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
-            style={{
-              background: 'white',
-              color: data.theme.accent,
-              borderColor: data.theme.accent
-            }}
-            href={`scriptable:///add`}
+          <Button
+            color={data.theme.accent}
+            onClick={() => window.open(`scriptable:///add`)?.focus()}
           >
             Create Script
-          </a>
+          </Button>
         </div>
-        <div className="-mx-6 mt-4">
+        <div className="-mx-6 mt-10">
           <Image
             alt=""
             className="rounded-xl"

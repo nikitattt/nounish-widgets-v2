@@ -17,6 +17,11 @@ const WidgetLink = ({
   slug: string
   index: number
 }) => {
+  const opacityHex = Math.floor(0.15 * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const backgroundColor = `${widget.theme.accent}${opacityHex}`
+
   return (
     <div key={index} className="w-full">
       <div
@@ -39,24 +44,23 @@ const WidgetLink = ({
             </p>
             <Link
               href={`/${family}/${slug}`}
-              className="w-max border-2 py-1 px-4 rounded-lg"
-              style={{
-                borderColor: widget.theme.accent,
-                color: widget.theme.accent
-              }}
+              className="w-max py-2 px-5 rounded-lg"
+              style={{ backgroundColor, color: widget.theme.accent }}
             >
               <div className="flex flex-row gap-1 w-max items-center">
-                <p>Install</p>
+                <p className="font-bold text-sm">Install</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={4}
+                  stroke="currentColor"
+                  className="w-3 h-3"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                    clipRule="evenodd"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                   />
                 </svg>
               </div>
