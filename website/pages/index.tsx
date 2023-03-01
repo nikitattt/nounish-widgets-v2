@@ -71,7 +71,7 @@ const WidgetLink = ({
               alt=""
               // TODO: square or rectangular images
               className="rounded-xl h-40 w-auto"
-              src={widget.widgetIconImage}
+              src={widget.images.icon}
             />
           </div>
         </Link>
@@ -93,16 +93,24 @@ const Home: NextPage<{ data: any }> = (props) => {
         />
       </Head>
 
+      <div className="hidden lg:block absolute mr-[26%] right-1/2 mt-20 -rotate-12 max-w-xs">
+        <Image
+          src="/img/nouns/medium-general/icon.png"
+          width="1000"
+          height="500"
+          alt=""
+        />
+      </div>
+      <div className="hidden lg:block absolute mt-12 ml-[26%] left-1/2 rotate-12 max-w-[160px]">
+        <Image
+          src="/img/nouns/small-auction/icon.png"
+          width="500"
+          height="500"
+          alt=""
+        />
+      </div>
       <main className="mt-20 px-8 sm:px-20 md:px-40">
-        <div className="max-w-sm mx-auto">
-          <Image
-            src="/img/nouns/medium-general/icon.png"
-            width="1000"
-            height="500"
-            alt=""
-          />
-        </div>
-        <h1 className="mt-8 text-center text-6xl font-black tracking-tight">
+        <h1 className="mt-16 text-center text-6xl font-black tracking-tight">
           Nounish Widgets
         </h1>
         <p className="mt-12 text-center text-purple font-semibold text-xl">

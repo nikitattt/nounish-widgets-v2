@@ -159,7 +159,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           3
         </div>
         <div className="mt-2">
-          Now create a script, give it a title and page the script code.
+          Now create script, paste the copied code and click Run ▶
         </div>
         <div className="mt-8 flex justify-center">
           <a
@@ -190,6 +190,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           4
         </div>
         <div className="mt-2">
+          {/* TODO: set based on size */}
           Next, add a Small or Big sized Scriptable widget to one of your
           screens.
           <br />
