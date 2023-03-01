@@ -111,9 +111,16 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
               borderColor: data.theme.accent
             }}
             onClick={() => {
-              fetch(data.script.path)
+              fetch('/scripts/shared/installer.js')
                 .then((r) => r.text())
                 .then((text) => {
+                  const scriptHeader = installerHeader(
+                    data.script.name,
+                    data.script.urlPath,
+                    data.script.icon,
+                    data.script.color
+                  )
+                  text = scriptHeader + text
                   if (
                     navigator.canShare &&
                     navigator.canShare({
@@ -224,25 +231,22 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           />
         </div>
         <div
-          className="mt-12 text-6xl font-black p-10"
+          className="mt-12 text-4xl font-black p-10"
           style={{ color: data.theme.accent }}
         >
-          6
+          All good now!
         </div>
-        <div className="mt-2">All good now!</div>
-        <div className="mt-2">
-          Every day you will enjoy new amazing artpiece!
+        <div className="mt-20 flex flex-row gap-1 items-baseline justify-center">
+          <p>Created by:</p>
+          <a
+            className="cursor-pointer"
+            target="_blank"
+            href={'https://twitter.com/iamng_eth'}
+          >
+            <p className="text-brand-twitter underline">@ng</p>
+          </a>
         </div>
-        <div className="mt-4 max-w-sm mx-auto">
-          <Image
-            alt=""
-            className="rounded-xl"
-            src={data.images.promoShort}
-            height={681}
-            width={604}
-          />
-        </div>
-        <p className="mt-20 font-medium">Enjoy the Art✨</p>
+        <div className="mt-12" />
       </main>
 
       <footer className="flex mb-20"></footer>
