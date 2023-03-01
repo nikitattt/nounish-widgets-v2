@@ -127,7 +127,14 @@ const Home: NextPage<{ data: any }> = (props) => {
             With iOS widgets
           </span>
         </p>
-        <h2 className="mt-20 text-center text-3xl font-bold">Nouns DAO</h2>
+        <div className="mt-40 w-24 mx-auto">
+          <Image
+            src="/img/icons/nouns.png"
+            alt="Nouns Icon"
+            height={180}
+            width={480}
+          />
+        </div>
         <div className="mt-40 flex flex-col gap-40 max-w-2xl mx-auto">
           {data.nouns.map((e: any, i: number) => {
             return (
@@ -135,8 +142,22 @@ const Home: NextPage<{ data: any }> = (props) => {
             )
           })}
         </div>
-        <h2 className="mt-40 text-center text-3xl font-bold">Lil Nouns DAO</h2>
-        <h2 className="mt-20 text-center text-3xl font-bold">Prop House</h2>
+        <div className="mt-40 w-24 mx-auto">
+          <Image
+            src="/img/icons/lil-nouns.png"
+            alt="Nouns Icon"
+            height={160}
+            width={400}
+          />
+        </div>
+        <div className="mt-40 w-20 mx-auto">
+          <Image
+            src="/img/icons/prop-house.png"
+            alt="Nouns Icon"
+            height={400}
+            width={400}
+          />
+        </div>
       </main>
 
       <footer className="flex mt-20"></footer>
