@@ -81,7 +81,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
             width={604}
           />
         </div>
-        <div className="mt-10">The how-to👇</div>
+        <div className="mt-10">Install👇</div>
         <div
           className="text-6xl font-black p-10"
           style={{ color: data.theme.secondary }}
