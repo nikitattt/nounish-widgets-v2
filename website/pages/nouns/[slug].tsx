@@ -31,7 +31,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
 
       <NavBar />
       <main>
-        <InstallInstructions widget={data} />
+        <InstallInstructions widget={data} familyIcon="/img/icons/nouns.png" />
       </main>
 
       <footer className="flex mb-20"></footer>

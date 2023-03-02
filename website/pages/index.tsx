@@ -70,7 +70,7 @@ const WidgetLink = ({
       </div>
       <div className="flex sm:hidden flex-col items-center">
         <Link href={`/${family}/${slug}`} className="w-max">
-          <div className="max-w-sm text-center">
+          <div className="max-w-sm">
             <img
               alt=""
               // TODO: square or rectangular images
@@ -78,6 +78,12 @@ const WidgetLink = ({
               src={widget.images.icon}
             />
           </div>
+          <p
+            className="mt-1 text-center text-sm text-grey"
+            // style={{ color: widget.theme.accent }}
+          >
+            {widget.title}
+          </p>
         </Link>
       </div>
     </div>
@@ -114,20 +120,24 @@ const Home: NextPage<{ data: any }> = (props) => {
         />
       </div>
       <main className="mt-20 px-8 sm:px-20 md:px-40">
-        <h1 className="mt-16 text-center text-6xl font-black tracking-tight">
+        <h1 className="mt-0 sm:mt-16 text-center text-4xl sm:text-6xl font-black tracking-tight">
           Nounish Widgets
         </h1>
-        <p className="mt-12 text-center font-bold text-3xl max-w-lg mx-auto leading-relaxed">
-          <span className="bg-fuchsia/30 py-1 px-2 rounded-lg">Never miss</span>{' '}
+        <p className="mt-12 text-center font-bold text-2xl sm:text-3xl max-w-lg mx-auto leading-[2.375rem] sm:leading-[2.9rem]">
+          <span className="bg-fuchsia/10 text-fuchsia py-0.5 sm:py-1 px-1.5 sm:px-2 rounded-lg">
+            Never miss
+          </span>{' '}
           important{' '}
-          <span className="bg-blue/30 py-1 px-2 rounded-lg">events</span> in
-          Nouns ecosystem
+          <span className="bg-blue/10 text-blue py-0.5 sm:py-1 px-1.5 sm:px-2 rounded-lg">
+            events
+          </span>{' '}
+          in Nouns ecosystem
           <br />
-          <span className="bg-red/40 py-1 px-2 rounded-lg">
+          <span className="bg-red/10 text-red py-0.5 sm:py-1 px-1.5 sm:px-2 rounded-lg">
             With iOS widgets
           </span>
         </p>
-        <div className="mt-40 w-24 mx-auto">
+        <div className="mt-28 sm:mt-40 w-24 mx-auto">
           <Image
             src="/img/icons/nouns.png"
             alt="Nouns Icon"
@@ -135,14 +145,14 @@ const Home: NextPage<{ data: any }> = (props) => {
             width={480}
           />
         </div>
-        <div className="mt-40 flex flex-col gap-40 max-w-2xl mx-auto">
+        <div className="mt-28 sm:mt-40 flex flex-col gap-16 sm:gap-40 max-w-2xl mx-auto">
           {data.nouns.map((e: any, i: number) => {
             return (
               <WidgetLink family="nouns" slug={e.slug} widget={e} index={i} />
             )
           })}
         </div>
-        <div className="mt-40 w-24 mx-auto">
+        <div className="mt-28 sm:mt-40 w-24 mx-auto">
           <Image
             src="/img/icons/lil-nouns.png"
             alt="Nouns Icon"
@@ -150,7 +160,7 @@ const Home: NextPage<{ data: any }> = (props) => {
             width={400}
           />
         </div>
-        <div className="mt-40 w-20 mx-auto">
+        <div className="mt-28 sm:mt-40 w-20 mx-auto">
           <Image
             src="/img/icons/prop-house.png"
             alt="Nouns Icon"
