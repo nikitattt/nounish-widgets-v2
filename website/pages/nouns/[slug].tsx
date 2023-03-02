@@ -7,6 +7,22 @@ import NavBar from '../../components/NavBar'
 
 import widgets from '../../content/widgets.json'
 
+const ScriptName = ({ name, color }: { name: string; color: string }) => {
+  const opacityHex = Math.floor(0.15 * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const backgroundColor = `${color}${opacityHex}`
+
+  return (
+    <span
+      className="py-1 px-2 rounded-lg font-semibold"
+      style={{ backgroundColor, color: color }}
+    >
+      {name}
+    </span>
+  )
+}
+
 const installerHeader = (
   name: string,
   urlPath: string,
@@ -191,9 +207,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           4
         </div>
         <div className="mt-2">
-          {/* TODO: set based on size */}
-          Next, add a Small or Big sized Scriptable widget to one of your
-          screens.
+          Next, add Scriptable widget to one of your screens.
           <br />
           <br />
           After you have added it to the screen, long press on it to open its
@@ -203,7 +217,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           <Image
             alt=""
             className="rounded-xl"
-            src="/img/shared/edit-widget.png"
+            src={`/img/shared/${data.size}-edit-widget.png`}
             height={793}
             width={1291}
           />
@@ -214,7 +228,11 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         >
           5
         </div>
-        <div className="mt-2">Select the script you have created above.</div>
+        <div className="mt-2">
+          Select the{' '}
+          <ScriptName name={data.script.name} color={data.theme.accent} />{' '}
+          script
+        </div>
         <div className="-mx-6 mt-4">
           <Image
             alt=""
