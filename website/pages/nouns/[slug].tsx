@@ -29,7 +29,7 @@ const installerHeader = (
   icon: string,
   color: string
 ) => {
-  return `// ${name} Widget\n// Paste it into Scriptable app\n// And hit Run ▶ (bottom-right)\n\nconst scriptName = '${name}'\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n`
+  return `// ${name} Script\n// Paste it into Scriptable app\n// And hit Run ▶ (bottom-right)\n\nconst scriptName = '${name}'\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n`
 }
 
 const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
