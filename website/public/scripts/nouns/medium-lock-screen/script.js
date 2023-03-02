@@ -1,12 +1,6 @@
-/*
- * Created by: ng
- * Twitter: @iamng_eth
- *
- * Version: 0.1.0
- * Last Update: 12.12.2022
- *
- * Enjoy!
- */
+const version = 1
+
+await update()
 
 const data = await loadData()
 
@@ -87,4 +81,23 @@ function numOfActiveProps(proposals) {
     });
 
     return n
+}
+
+async function update() {
+    let req = new Request(`${urlPath}/versions.json`);
+    let versions = await req.loadJSON();
+    if (versions.latestVersion > version) {
+        fileManager = FileManager.iCloud()
+        documentsDirectory = fileManager.documentsDirectory()
+
+        let req = new Request(`${urlPath}/script.js`);
+        let code = await req.loadString();
+
+        let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support: @iamng_eth\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
+        let selfFilePath = fileManager.joinPath(documentsDirectory, Script.name() + '.js');
+        fileManager.write(selfFilePath, codeToStore);
+        let callback = new CallbackURL("scriptable:///run");
+        callback.addParameter("scriptName", Script.name());
+        callback.open();
+    }
 }

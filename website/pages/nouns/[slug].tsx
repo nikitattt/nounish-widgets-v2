@@ -207,7 +207,9 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           4
         </div>
         <div className="mt-2">
-          Next, add Scriptable widget to one of your screens.
+          {data.type === 'lock-screen'
+            ? 'Next, add Scriptable widget to your Lock Screen.'
+            : 'Next, add Scriptable widget to one of your screens.'}
           <br />
           <br />
           After you have added it to the screen, long press on it to open its

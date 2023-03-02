@@ -73,6 +73,38 @@
         "accent": "#FF1F3D",
         "secondary": "#FFC700"
       }
+    },
+    {
+      "slug": "medium-lock-screen",
+      "title": "Lock Screen Widget",
+      "description": "Keep an eye on nouns auction and number of active props from the lock screen",
+      "images": {
+        "promoFull": "/img/nouns/medium-lock-screen/main.png",
+        "promoShort": "/img/nouns/medium-lock-screen/main.png",
+        "icon": "/img/nouns/medium-lock-screen/icon.png"
+      },
+      "script": {
+        "urlPath": "https://nounswidgets.wtf/scripts/nouns/medium-lock-screen",
+        "name": "Nouns Lock Screen",
+        "icon": "magic",
+        "color": "red"
+      },
+      "size": "medium",
+      "type": "lock-screen",
+      "additionalSizes": [],
+      "meta": {
+        "title": "Lock Screen Widget",
+        "description": "Keep an eye on nouns auction and number of active props from the lock screen",
+        "shareImage": "https://nounswidgets.wtf/img/nouns/medium-lock-screen/share.png",
+        "url": "https://nounswidgets.wtf/nouns/medium-lock-screen",
+        "twitterShare": ""
+      },
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#1CC500",
+        "secondary": "#FF1F3D"
+      }
     }
   ],
   "lilNouns": [],
