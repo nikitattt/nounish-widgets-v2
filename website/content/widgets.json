@@ -87,7 +87,7 @@
         "urlPath": "https://nounswidgets.wtf/scripts/nouns/medium-lock-screen",
         "name": "Nouns Lock Screen",
         "icon": "magic",
-        "color": "red"
+        "color": "green"
       },
       "size": "medium",
       "type": "lock-screen",
