@@ -1,4 +1,4 @@
-const version = 1
+const version = 2 //TODO: revert to 1
 
 await update()
 
