@@ -240,7 +240,7 @@ const InstallInstructions = ({
         >
           5
         </div>
-        <div className="mt-2">
+        <div className="mt-2 leading-relaxed">
           Select the{' '}
           <ScriptName name={widget.script.name} color={widget.theme.accent} />{' '}
           script
