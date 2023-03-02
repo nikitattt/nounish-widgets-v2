@@ -190,17 +190,6 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           >
             Create Script
           </Button>
-          <a
-            className="mb-6 cursor-pointer px-8 py-2 rounded-xl border-2 font-medium"
-            style={{
-              background: 'white',
-              color: data.theme.accent,
-              borderColor: data.theme.accent
-            }}
-            href={`scriptable:///add`}
-          >
-            Create Script
-          </a>
         </div>
         <div className="-mx-6 mt-10">
           <Image
