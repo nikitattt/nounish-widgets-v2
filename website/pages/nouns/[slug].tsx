@@ -121,7 +121,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
         >
           2
         </div>
-        <div className="mt-2">Save the widget code!</div>
+        <div className="mt-2">Copy the widget code to clipboard!</div>
         <div className="mt-6">
           <Button
             color={data.theme.accent}
