@@ -1,12 +1,6 @@
-/*
- * Created by: ng
- * Twitter: @iamng_eth
- *
- * Version: 0.1.0
- * Last Update: 07.11.2022
- *
- * Enjoy!
- */
+const version = 1
+
+await update()
 
 const coolBackground = new Color('#d5d7e0')
 const coolBorder = new Color('#bcc0d0')
@@ -256,4 +250,23 @@ function secondsToDhms(seconds) {
     var sDisplay = s > 0 ? s + 's' : ''
 
     return hDisplay + mDisplay + sDisplay
+}
+
+async function update() {
+    let req = new Request(`${urlPath}/versions.json`);
+    let versions = await req.loadJSON();
+    if (versions.latestVersion > version) {
+        fileManager = FileManager.iCloud()
+        documentsDirectory = fileManager.documentsDirectory()
+
+        let req = new Request(`${urlPath}/script.js`);
+        let code = await req.loadString();
+
+        let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support: @iamng_eth\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
+        let selfFilePath = fileManager.joinPath(documentsDirectory, Script.name() + '.js');
+        fileManager.write(selfFilePath, codeToStore);
+        let callback = new CallbackURL("scriptable:///run");
+        callback.addParameter("scriptName", Script.name());
+        callback.open();
+    }
 }
