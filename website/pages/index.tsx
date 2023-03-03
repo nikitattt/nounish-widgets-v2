@@ -110,6 +110,7 @@ const Home: NextPage<{ data: any }> = (props) => {
         />
       </Head>
 
+      {/* Widgets */}
       <div className="hidden lg:block absolute mr-[26%] right-1/2 mt-20 -rotate-12 max-w-xs">
         <Image
           src="/img/nouns/medium-general/icon.png"
@@ -118,7 +119,8 @@ const Home: NextPage<{ data: any }> = (props) => {
           alt=""
         />
       </div>
-      <div className="hidden lg:block absolute mt-12 ml-[26%] left-1/2 rotate-12 max-w-[160px]">
+      {/* <div className="hidden lg:block absolute mt-64 ml-[26%] left-1/2 rotate-12 max-w-[160px]"> */}
+      <div className="hidden lg:block absolute mt-40 ml-[26%] left-1/2 rotate-12 max-w-[160px]">
         <Image
           src="/img/nouns/small-auction/icon.png"
           width="500"
@@ -126,6 +128,21 @@ const Home: NextPage<{ data: any }> = (props) => {
           alt=""
         />
       </div>
+
+      {/* Glasses */}
+      <div className="hidden lg:block absolute mr-[30%] right-1/2 mt-72 rotate-[12deg] max-w-[100px]">
+        <Image
+          src="/img/icons/nouns-blue.png"
+          width="160"
+          height="160"
+          alt=""
+        />
+      </div>
+      <div className="hidden lg:block absolute mt-20 ml-[36%] left-1/2 rotate-[8deg] max-w-[60px]">
+        <Image src="/img/icons/nouns-red.png" width="160" height="160" alt="" />
+      </div>
+
+      {/* Body */}
       <main className="mt-20 px-8 sm:px-20 md:px-40">
         <h1 className="mt-0 sm:mt-16 text-center text-4xl sm:text-6xl font-black tracking-tight">
           Nounish Widgets
@@ -146,13 +163,13 @@ const Home: NextPage<{ data: any }> = (props) => {
         </p>
         <div className="mt-28 sm:mt-40 w-24 mx-auto">
           <Image
-            src="/img/icons/nouns.png"
+            src="/img/icons/nouns-black.png"
             alt="Nouns Icon"
-            height={180}
-            width={480}
+            height={160}
+            width={160}
           />
         </div>
-        <div className="mt-28 sm:mt-40 flex flex-col gap-16 sm:gap-40 max-w-2xl mx-auto">
+        <div className="mt-14 sm:mt-20 flex flex-col gap-12 sm:gap-36 max-w-2xl mx-auto">
           {data.nouns.map((e: any, i: number) => {
             return (
               <WidgetLink family="nouns" slug={e.slug} widget={e} index={i} />
@@ -161,13 +178,13 @@ const Home: NextPage<{ data: any }> = (props) => {
         </div>
         <div className="mt-28 sm:mt-40 w-24 mx-auto">
           <Image
-            src="/img/icons/lil-nouns.png"
+            src="/img/icons/lil-nouns-black.png"
             alt="Nouns Icon"
             height={160}
-            width={400}
+            width={160}
           />
         </div>
-        <div className="mt-28 sm:mt-40 flex flex-col gap-16 sm:gap-40 max-w-2xl mx-auto">
+        <div className="mt-14 sm:mt-20 flex flex-col gap-12 sm:gap-36 max-w-2xl mx-auto">
           {data.lilNouns.map((e: any, i: number) => {
             return (
               <WidgetLink
@@ -179,7 +196,7 @@ const Home: NextPage<{ data: any }> = (props) => {
             )
           })}
         </div>
-        <div className="mt-28 sm:mt-40 w-20 mx-auto">
+        {/* <div className="mt-28 sm:mt-40 w-20 mx-auto">
           <Image
             src="/img/icons/prop-house.png"
             alt="Nouns Icon"
@@ -199,7 +216,7 @@ const Home: NextPage<{ data: any }> = (props) => {
               />
             )
           })}
-        </div>
+        </div> */}
       </main>
 
       <footer className="flex mt-40 pb-6 w-full">
