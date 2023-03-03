@@ -12,7 +12,7 @@
       "script": {
         "urlPath": "https://nounswidgets.wtf/scripts/nouns/small-auction",
         "name": "Nouns Auction Small",
-        "icon": "magic",
+        "icon": "adjust",
         "color": "blue"
       },
       "size": "small",
@@ -54,7 +54,7 @@
       "script": {
         "urlPath": "https://nounswidgets.wtf/scripts/nouns/medium-general",
         "name": "Nouns Auction and Governance",
-        "icon": "magic",
+        "icon": "adjust",
         "color": "red"
       },
       "size": "medium",
@@ -86,7 +86,7 @@
       "script": {
         "urlPath": "https://nounswidgets.wtf/scripts/nouns/medium-lock-screen",
         "name": "Nouns Lock Screen",
-        "icon": "magic",
+        "icon": "adjust",
         "color": "green"
       },
       "size": "medium",
@@ -107,6 +107,39 @@
       }
     }
   ],
-  "lilNouns": [],
+  "lilNouns": [
+    {
+      "slug": "medium-general",
+      "title": "Auction and Governance Widget",
+      "description": "Keep an eye on lil nouns auction and active proposals",
+      "images": {
+        "promoFull": "/img/lil-nouns/medium-general/main.png",
+        "promoShort": "/img/lil-nouns/medium-general/main.png",
+        "icon": "/img/lil-nouns/medium-general/icon.png"
+      },
+      "script": {
+        "urlPath": "https://nounswidgets.wtf/scripts/lil-nouns/medium-general",
+        "name": "Lil Nouns Auction and Governance",
+        "icon": "adjust",
+        "color": "red"
+      },
+      "size": "medium",
+      "type": "general",
+      "additionalSizes": [],
+      "meta": {
+        "title": "Lil Nouns Auction and Governance Widget",
+        "description": "Keep an eye on lil nouns auction and active proposals",
+        "shareImage": "https://nounswidgets.wtf/img/lil-nouns/medium-general/share.png",
+        "url": "https://nounswidgets.wtf/lil-nouns/nouns-medium",
+        "twitterShare": ""
+      },
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#FF1F3D",
+        "secondary": "#FFC700"
+      }
+    }
+  ],
   "propHouse": []
 }

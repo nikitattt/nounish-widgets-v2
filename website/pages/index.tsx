@@ -160,6 +160,18 @@ const Home: NextPage<{ data: any }> = (props) => {
             width={400}
           />
         </div>
+        <div className="mt-28 sm:mt-40 flex flex-col gap-16 sm:gap-40 max-w-2xl mx-auto">
+          {data.lilNouns.map((e: any, i: number) => {
+            return (
+              <WidgetLink
+                family="lil-nouns"
+                slug={e.slug}
+                widget={e}
+                index={i}
+              />
+            )
+          })}
+        </div>
         <div className="mt-28 sm:mt-40 w-20 mx-auto">
           <Image
             src="/img/icons/prop-house.png"
