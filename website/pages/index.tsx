@@ -10,12 +10,14 @@ const WidgetLink = ({
   widget,
   family,
   slug,
-  index
+  index,
+  shadow = false
 }: {
   widget: any
   family: string
   slug: string
   index: number
+  shadow?: boolean
 }) => {
   const opacityHex = Math.floor(0.15 * 255)
     .toString(16)
@@ -30,7 +32,12 @@ const WidgetLink = ({
           index % 2 ? 'flex-row' : 'flex-row-reverse'
         )}
       >
-        <div className="max-w-sm text-center">
+        <div
+          className={clsx(
+            'max-w-sm text-center rounded-xl',
+            shadow && 'shadow-lg'
+          )}
+        >
           <img
             alt=""
             className="rounded-xl h-40 w-auto"
@@ -70,7 +77,7 @@ const WidgetLink = ({
       </div>
       <div className="flex sm:hidden flex-col items-center">
         <Link href={`/${family}/${slug}`} className="w-max">
-          <div className="max-w-sm">
+          <div className={clsx('max-w-sm rounded-xl', shadow && 'shadow-lg')}>
             <img
               alt=""
               // TODO: square or rectangular images
@@ -180,9 +187,33 @@ const Home: NextPage<{ data: any }> = (props) => {
             width={400}
           />
         </div>
+        <div className="mt-28 sm:mt-40 flex flex-col gap-16 sm:gap-40 max-w-2xl mx-auto">
+          {data.propHouse.map((e: any, i: number) => {
+            return (
+              <WidgetLink
+                family="prop-house"
+                slug={e.slug}
+                widget={e}
+                index={i}
+                shadow={true}
+              />
+            )
+          })}
+        </div>
       </main>
 
-      <footer className="flex mt-20"></footer>
+      <footer className="flex mt-40 pb-6 w-full">
+        <div className="mt-20 flex flex-row gap-1 items-baseline justify-center w-full">
+          <p>Created by:</p>
+          <a
+            className="cursor-pointer"
+            target="_blank"
+            href={'https://twitter.com/iamng_eth'}
+          >
+            <p className="text-brand-twitter underline">@ng</p>
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }

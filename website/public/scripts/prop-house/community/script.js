@@ -1,12 +1,6 @@
-/*
- * Created by: ng
- * Twitter: @iamng_eth
- *
- * Version: 0.2.0
- * Last Update: 26.10.2022
- *
- * Enjoy!
- */
+const version = 1
+
+await update()
 
 const white = new Color('#FFFFFF')
 const black = new Color('#000000')
@@ -244,4 +238,23 @@ function createLine(width, height, color) {
     context.setFillColor(color)
     context.fillPath()
     return context.getImage()
+}
+
+async function update() {
+    let req = new Request(`${urlPath}/versions.json`);
+    let versions = await req.loadJSON();
+    if (versions.latestVersion > version) {
+        fileManager = FileManager.iCloud()
+        documentsDirectory = fileManager.documentsDirectory()
+
+        let req = new Request(`${urlPath}/script.js`);
+        let code = await req.loadString();
+
+        let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support: @iamng_eth\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
+        let selfFilePath = fileManager.joinPath(documentsDirectory, Script.name() + '.js');
+        fileManager.write(selfFilePath, codeToStore);
+        let callback = new CallbackURL("scriptable:///run");
+        callback.addParameter("scriptName", Script.name());
+        callback.open();
+    }
 }

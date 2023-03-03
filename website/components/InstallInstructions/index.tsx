@@ -32,10 +32,12 @@ const installerHeader = (
 
 const InstallInstructions = ({
   widget,
-  familyIcon
+  familyIcon,
+  propHouse = false
 }: {
   widget: any
   familyIcon: string
+  propHouse?: boolean
 }) => {
   const router = useRouter()
 
@@ -254,6 +256,58 @@ const InstallInstructions = ({
             width={1291}
           />
         </div>
+        {propHouse && (
+          <div>
+            <div
+              className="mt-12 text-6xl font-black p-10"
+              style={{ color: widget.theme.secondary }}
+            >
+              6
+            </div>
+            <div className="mt-2">
+              Open Prop House website and open community you would like to
+              track.
+            </div>
+            <div className="mt-2">Click and Copy community address.</div>
+            <div className="mt-8">
+              <Button
+                color={widget.theme.accent}
+                onClick={() =>
+                  window.open('https://prop.house/', '_blank')?.focus()
+                }
+              >
+                Prop House
+              </Button>
+            </div>
+            <div className="-mx-6 mt-10">
+              <Image
+                alt=""
+                className="rounded-xl"
+                src="/img/prop-house/shared/copy-address.png"
+                height={793}
+                width={1291}
+              />
+            </div>
+            <div
+              className="mt-12 text-6xl font-black p-10"
+              style={{ color: widget.theme.secondary }}
+            >
+              7
+            </div>
+            <div className="mt-2">
+              Paste copied community address as widget parameter.
+            </div>
+            <div className="-mx-6 mt-4">
+              <Image
+                alt=""
+                className="rounded-xl"
+                src="/img/prop-house/shared/set-parameter.png"
+                height={793}
+                width={1291}
+              />
+            </div>
+          </div>
+        )}
         <div
           className="mt-12 text-4xl font-black p-10"
           style={{ color: widget.theme.accent }}

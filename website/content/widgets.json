@@ -141,5 +141,38 @@
       }
     }
   ],
-  "propHouse": []
+  "propHouse": [
+    {
+      "slug": "community",
+      "title": "Community Widget",
+      "description": "Keep an eye on prop house communities",
+      "images": {
+        "promoFull": "/img/prop-house/community/main.png",
+        "promoShort": "/img/prop-house/community/main.png",
+        "icon": "/img/prop-house/community/icon.png"
+      },
+      "script": {
+        "urlPath": "https://nounswidgets.wtf/scripts/prop-house/community",
+        "name": "Prop House Community",
+        "icon": "adjust",
+        "color": "deep-purple"
+      },
+      "size": "medium",
+      "type": "governance",
+      "additionalSizes": [],
+      "meta": {
+        "title": "Prop House Community Widget",
+        "description": "Keep an eye on prop house communities",
+        "shareImage": "https://nounswidgets.wtf/img/prop-house/community/share.png",
+        "url": "https://nounswidgets.wtf/prop-house/community",
+        "twitterShare": ""
+      },
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#C24CFE",
+        "secondary": "#FFC700"
+      }
+    }
+  ]
 }
