@@ -105,6 +105,43 @@
         "accent": "#1CC500",
         "secondary": "#FF1F3D"
       }
+    },
+    {
+      "slug": "governance",
+      "title": "Governance Widget",
+      "description": "Keep an eye on nouns proposals",
+      "images": {
+        "promoFull": "/img/nouns/governance/main-big.png",
+        "promoShort": "/img/nouns/governance/main.png",
+        "icon": "/img/nouns/governance/icon.png"
+      },
+      "script": {
+        "urlPath": "https://nounswidgets.wtf/scripts/nouns/governance",
+        "name": "Nouns Governance",
+        "icon": "adjust",
+        "color": "black"
+      },
+      "size": "medium",
+      "type": "governance",
+      "additionalSizes": [
+        {
+          "size": "big",
+          "image": "/img/nouns/governance/main-big.png"
+        }
+      ],
+      "meta": {
+        "title": "Nouns Governance Widget",
+        "description": "Keep an eye on nouns proposals",
+        "shareImage": "https://nounswidgets.wtf/img/nouns/governance/share.png",
+        "url": "https://nounswidgets.wtf/nouns/governance",
+        "twitterShare": ""
+      },
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#221B1A",
+        "secondary": "#3757FF"
+      }
     }
   ],
   "lilNouns": [
