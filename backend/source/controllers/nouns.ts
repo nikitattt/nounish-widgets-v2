@@ -55,6 +55,30 @@ const query = `
     }
   `
 
+const propHouseUrl = 'https://prod.backend.prop.house/graphql'
+const propHouseQuery = `
+    query CommunityByAddress {
+        findByAddress(address: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03") {
+          id,
+          name,
+          auctions {
+            id,
+            status,
+            title,
+            startTime,
+            proposalEndTime,
+            votingEndTime,
+            fundingAmount,
+            currencyType,
+            numWinners,
+            proposals {
+              id
+            }
+          }
+        }
+      }
+  `
+
 const getNounsData = async (
   req: Request,
   res: Response,
@@ -112,6 +136,28 @@ const getNounsData = async (
       proposals.push(propToAdd)
     }
   }
+
+  // try {
+  //   let result: AxiosResponse = await axios.post(propHouseUrl, {
+  //     query: propHouseQuery
+  //   })
+  //   const propHouseData = result.data.data.findByAddress.auctions
+
+  //   console.log(propHouseData)
+
+  //   // for (const prop of data.proposals) {
+  //   //   let propToAdd: Proposal = {
+  //   //     id: Number(prop.id),
+  //   //     type: 'DAO',
+  //   //     title: prop.title,
+  //   //     state: state,
+  //   //     endTime: getProposalEndTimestamp(blockNumber, state, prop),
+  //   //     quorum: prop.quorumVotes
+  //   //   }
+
+  //   //   proposals.push(propToAdd)
+  //   // }
+  // } catch {}
 
   let nounsData: Nouns = {
     auction: {

@@ -11,6 +11,13 @@ export interface Proposal {
   }
 }
 
+export interface PropHouseProposal {
+  id: number
+  title: string
+  state: string
+  endTime: number
+}
+
 export type Seed = {
   head: number
   glasses: number
@@ -31,4 +38,5 @@ export interface Auction {
 export interface Nouns {
   auction: Auction
   proposals?: Proposal[]
+  propHouse?: PropHouseProposal[]
 }
