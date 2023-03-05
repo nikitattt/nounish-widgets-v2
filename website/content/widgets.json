@@ -17,12 +17,7 @@
       },
       "size": "small",
       "type": "general",
-      "additionalSizes": [
-        {
-          "size": "big",
-          "image": ""
-        }
-      ],
+      "additionalSizes": [],
       "meta": {
         "title": "Nouns Auction Widget",
         "description": "Keep an eye on nouns auction",

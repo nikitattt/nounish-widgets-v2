@@ -21,6 +21,40 @@ const ScriptName = ({ name, color }: { name: string; color: string }) => {
   )
 }
 
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+const WidgetSizes = ({ widget }: { widget: any }) => {
+  const color = widget.theme.accent
+
+  const opacityHex = Math.floor(0.15 * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const backgroundColor = `${color}${opacityHex}`
+
+  const nameElement = (name: string) => {
+    return (
+      <span
+        className="py-1 px-2 rounded-lg font-semibold"
+        style={{ backgroundColor, color: color }}
+      >
+        {capitalizeFirstLetter(name)}
+      </span>
+    )
+  }
+
+  return (
+    <span>
+      {nameElement(widget.size)}
+      {widget.additionalSizes.length > 0 &&
+        widget.additionalSizes.map((e: any, i: number) => {
+          return <span key={`name-${i + 1}`}> or {nameElement(e.size)}</span>
+        })}
+    </span>
+  )
+}
+
 const installerHeader = (
   name: string,
   urlPath: string,
@@ -219,9 +253,10 @@ const InstallInstructions = ({
           4
         </div>
         <div className="mt-2">
+          Next, add <WidgetSizes widget={widget} /> Scriptable widget to
           {widget.type === 'lock-screen'
-            ? 'Next, add Scriptable widget to your Lock Screen.'
-            : 'Next, add Scriptable widget to one of your screens.'}
+            ? ' your Lock Screen.'
+            : ' one of your screens.'}
           <br />
           <br />
           After you have added it to the screen, long press on it to open its
@@ -245,7 +280,7 @@ const InstallInstructions = ({
         <div className="mt-2 leading-relaxed">
           Select the{' '}
           <ScriptName name={widget.script.name} color={widget.theme.accent} />{' '}
-          script
+          script.
         </div>
         <div className="-mx-6 mt-4">
           <Image
