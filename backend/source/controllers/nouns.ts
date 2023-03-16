@@ -5,12 +5,17 @@ import { ImageData, getNounData } from '@nouns/assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
 import { AnkrProvider } from '@ethersproject/providers'
+import { AlchemyProvider } from '@ethersproject/providers'
 import {
   getProposalEndTimestamp,
   getProposalState
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
 import { Nouns, Proposal } from '../types/nouns'
+
+require('dotenv').config()
+
+const ALCHEMY_KEY = process.env.ALCHEMY_KEY
 
 const { palette } = ImageData
 
@@ -86,7 +91,8 @@ const getNounsData = async (
 ) => {
   // get the id from the req
   // let id: string = req.params.id;
-  const provider = new AnkrProvider()
+  // const provider = new AnkrProvider()
+  const provider = new AlchemyProvider('mainnet', ALCHEMY_KEY) // TODO: Use custom key for nounish widgets
 
   let result: AxiosResponse = await axios.post(url, { query: query })
   const data = result.data.data
