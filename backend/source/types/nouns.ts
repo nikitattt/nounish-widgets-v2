@@ -11,11 +11,13 @@ export interface Proposal {
   }
 }
 
-export interface PropHouseProposal {
+export interface PropHouseRound {
   id: number
   title: string
   state: string
   endTime: number
+  funding: string
+  proposals?: number
 }
 
 export type Seed = {
@@ -38,5 +40,5 @@ export interface Auction {
 export interface Nouns {
   auction: Auction
   proposals?: Proposal[]
-  propHouse?: PropHouseProposal[]
+  propHouse?: PropHouseRound[]
 }

@@ -56,7 +56,7 @@ const query = `
 const propHouseUrl = 'https://prod.backend.prop.house/graphql'
 const propHouseQuery = `
       query CommunityByAddress {
-          findByAddress(address: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03") {
+          findByAddress(address: "0x4b10701Bfd7BFEdc47d50562b76b436fbB5BdB3B") {
             id,
             name,
             auctions {

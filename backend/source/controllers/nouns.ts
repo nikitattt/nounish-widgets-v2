@@ -7,11 +7,13 @@ import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
 import { AnkrProvider } from '@ethersproject/providers'
 import { AlchemyProvider } from '@ethersproject/providers'
 import {
+  getPropHouseRoundState,
+  getPropHouseRoundTimestamp,
   getProposalEndTimestamp,
   getProposalState
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
-import { Nouns, Proposal } from '../types/nouns'
+import { Nouns, PropHouseRound, Proposal } from '../types/nouns'
 
 require('dotenv').config()
 
@@ -143,27 +145,37 @@ const getNounsData = async (
     }
   }
 
-  // try {
-  //   let result: AxiosResponse = await axios.post(propHouseUrl, {
-  //     query: propHouseQuery
-  //   })
-  //   const propHouseData = result.data.data.findByAddress.auctions
+  let propHouse: PropHouseRound[] = []
+  try {
+    let result: AxiosResponse = await axios.post(propHouseUrl, {
+      query: propHouseQuery
+    })
+    const propHouseData = result.data.data.findByAddress.auctions
 
-  //   console.log(propHouseData)
+    for (const round of propHouseData) {
+      if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
+        const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
 
-  //   // for (const prop of data.proposals) {
-  //   //   let propToAdd: Proposal = {
-  //   //     id: Number(prop.id),
-  //   //     type: 'DAO',
-  //   //     title: prop.title,
-  //   //     state: state,
-  //   //     endTime: getProposalEndTimestamp(blockNumber, state, prop),
-  //   //     quorum: prop.quorumVotes
-  //   //   }
+        let roundToAdd: PropHouseRound = {
+          id: Number(round.id),
+          title: round.title,
+          state: getPropHouseRoundState(round.status),
+          funding: funding,
+          endTime: getPropHouseRoundTimestamp(round)
+        }
 
-  //   //   proposals.push(propToAdd)
-  //   // }
-  // } catch {}
+        if (['Open', 'Voting'].includes(round.status)) {
+          roundToAdd.proposals = round.proposals.length
+        }
+
+        propHouse.push(roundToAdd)
+      }
+    }
+
+    if (propHouse.length > 0) {
+      propHouse.sort((a, b) => a.endTime - b.endTime)
+    }
+  } catch {}
 
   let nounsData: Nouns = {
     auction: {
@@ -176,6 +188,8 @@ const getNounsData = async (
     },
     proposals: proposals
   }
+  if (propHouse) nounsData.propHouse = propHouse
+
   return res.status(200).json(nounsData)
 }
 
