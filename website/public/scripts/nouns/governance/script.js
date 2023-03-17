@@ -1,4 +1,4 @@
-const version = 1
+const version = 2
 
 await update()
 
@@ -31,7 +31,10 @@ const image = data.auction.image
 const seed = data.auction.seed
 
 const activeProps = numOfPropsByState(data.proposals, "ACTIVE")
+    + numOfPropsByState(data.propHouse, "ACTIVE")
 const pendingProps = numOfPropsByState(data.proposals, "PENDING")
+    + numOfPropsByState(data.propHouse, "PENDING")
+    + numOfPropsByState(data.propHouse, "PROPOSING")
 
 const w = new ListWidget()
 w.backgroundColor = pickByState(coolBackground, warmBackground)
@@ -82,10 +85,16 @@ if (config.widgetFamily == "large") {
     propsToDisplay = 9
 }
 
-for (const proposal of data.proposals) {
+const props = unitedProposals(data)
+
+for (const proposal of props) {
     if (totalDisplayed >= propsToDisplay) continue
     w.addSpacer(4)
-    displayProposal(proposal)
+    if (proposal.funding) {
+        displayRound(proposal)
+    } else {
+        displayProposal(proposal)
+    }
     totalDisplayed++
 }
 
@@ -178,6 +187,82 @@ function displayProposal(proposal) {
             `${proposal.quorum}`
         )
         dataW.addSpacer(4)
+    }
+}
+
+function displayRound(round) {
+    let barText
+    let time
+    let deadlinePrefix
+
+    if (round.state === "ACTIVE") {
+        barText = 'Active'
+        deadlinePrefix = "Ends "
+    } else if (round.state === "PENDING") {
+        barText = 'Pending'
+        deadlinePrefix = "Starts "
+    } else if (round.state === "PROPOSING") {
+        barText = 'Proposing'
+        deadlinePrefix = "Ends "
+    } else {
+        return
+    }
+
+    const timeLeft = round.endTime - new Date().valueOf()
+
+    if (timeLeft <= 43200000 && round.state === "ACTIVE") {
+        barTextColor = red
+        barBorderColor = redSemiTransparent
+    }
+
+    time = new Date(round.endTime)
+    const deadline = getTime(time)
+
+    const titleText = w.addText(`PropHouse · ${round.title}`)
+    titleText.textColor = pickByState(coolDarkText, warmDarkText)
+    titleText.font = Font.semiboldSystemFont(12)
+    titleText.lineLimit = 1
+
+    w.addSpacer(1)
+
+    const dataW = w.addStack()
+    dataW.centerAlignContent()
+
+    if (round.state === "ACTIVE") {
+        displayBar(dataW, barText, green, greenSemiTransparent)
+    } else if (["PENDING", "PROPOSING"].includes(round.state)) {
+        displayBar(
+            dataW,
+            barText,
+            pickByState(coolLightText, warmLightText),
+            pickByState(coolBorder, warmBorder)
+        )
+    }
+    dataW.addSpacer(4)
+    displayBar(
+        dataW,
+        deadlinePrefix + deadline,
+        pickByState(coolLightText, warmLightText),
+        pickByState(coolBorder, warmBorder)
+    )
+
+    dataW.addSpacer(4)
+    displayBar(
+        dataW,
+        round.funding,
+        pickByState(coolLightText, warmLightText),
+        pickByState(coolBorder, warmBorder)
+    )
+
+    if (["ACTIVE", "PROPOSING"].includes(round.state) && round.proposals) {
+        dataW.addSpacer(4)
+        displayBar(
+            dataW,
+            `Proposals: `,
+            pickByState(coolLightText, warmLightText),
+            pickByState(coolBorder, warmBorder),
+            `${round.proposals}`
+        )
     }
 }
 
@@ -283,6 +368,24 @@ function numOfPropsByState(proposals, state) {
     });
 
     return n
+}
+
+function unitedProposals(data) {
+    const proposals = data.proposals;
+    const propHouse = data.propHouse;
+
+    const combinedProposals = proposals.concat(propHouse);
+
+    const activeProposals = combinedProposals
+        .filter(prop => prop.state === "ACTIVE")
+        .sort((a, b) => a.endTime - b.endTime);
+    const nonActiveProposals = combinedProposals
+        .filter(prop => prop.state !== "ACTIVE")
+        .sort((a, b) => a.endTime - b.endTime);
+
+    const sortedProposals = activeProposals.concat(nonActiveProposals);
+
+    return sortedProposals;
 }
 
 async function update() {

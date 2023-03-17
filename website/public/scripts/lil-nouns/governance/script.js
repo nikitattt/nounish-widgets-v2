@@ -85,17 +85,16 @@ if (config.widgetFamily == "large") {
     propsToDisplay = 9
 }
 
-for (const proposal of data.proposals) {
-    if (totalDisplayed >= propsToDisplay) continue
-    w.addSpacer(4)
-    displayProposal(proposal)
-    totalDisplayed++
-}
+const props = unitedProposals(data)
 
-for (const round of data.propHouse) {
+for (const proposal of props) {
     if (totalDisplayed >= propsToDisplay) continue
     w.addSpacer(4)
-    displayRound(round)
+    if (proposal.funding) {
+        displayRound(proposal)
+    } else {
+        displayProposal(proposal)
+    }
     totalDisplayed++
 }
 
@@ -369,6 +368,24 @@ function numOfPropsByState(proposals, state) {
     });
 
     return n
+}
+
+function unitedProposals(data) {
+    const proposals = data.proposals;
+    const propHouse = data.propHouse;
+
+    const combinedProposals = proposals.concat(propHouse);
+
+    const activeProposals = combinedProposals
+        .filter(prop => prop.state === "ACTIVE")
+        .sort((a, b) => a.endTime - b.endTime);
+    const nonActiveProposals = combinedProposals
+        .filter(prop => prop.state !== "ACTIVE")
+        .sort((a, b) => a.endTime - b.endTime);
+
+    const sortedProposals = activeProposals.concat(nonActiveProposals);
+
+    return sortedProposals;
 }
 
 async function update() {
