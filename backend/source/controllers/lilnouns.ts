@@ -56,7 +56,7 @@ const query = `
 const propHouseUrl = 'https://prod.backend.prop.house/graphql'
 const propHouseQuery = `
       query CommunityByAddress {
-          findByAddress(address: "0x4b10701Bfd7BFEdc47d50562b76b436fbB5BdB3B") {
+          community(id: 2) {
             id,
             name,
             auctions {
@@ -128,7 +128,7 @@ const getLilNounsData = async (
     let result: AxiosResponse = await axios.post(propHouseUrl, {
       query: propHouseQuery
     })
-    const propHouseData = result.data.data.findByAddress.auctions
+    const propHouseData = result.data.data.community.auctions
 
     for (const round of propHouseData) {
       if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
