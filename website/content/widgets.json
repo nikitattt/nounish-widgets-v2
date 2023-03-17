@@ -171,6 +171,43 @@
         "accent": "#FF1F3D",
         "secondary": "#FFC700"
       }
+    },
+    {
+      "slug": "governance",
+      "title": "Governance Widget",
+      "description": "Keep an eye on lil nouns proposals",
+      "images": {
+        "promoFull": "/img/lil-nouns/governance/main-big.png",
+        "promoShort": "/img/lil-nouns/governance/main.png",
+        "icon": "/img/lil-nouns/governance/icon.png"
+      },
+      "script": {
+        "urlPath": "https://nounswidgets.wtf/scripts/lil-nouns/governance",
+        "name": "Lil Nouns Governance",
+        "icon": "adjust",
+        "color": "black"
+      },
+      "size": "medium",
+      "type": "governance",
+      "additionalSizes": [
+        {
+          "size": "big",
+          "image": "/img/lil-nouns/governance/main-big.png"
+        }
+      ],
+      "meta": {
+        "title": "Lil Nouns Governance Widget",
+        "description": "Keep an eye on lil nouns proposals",
+        "shareImage": "https://nounswidgets.wtf/img/lil-nouns/governance/share.png",
+        "url": "https://nounswidgets.wtf/lil-nouns/governance",
+        "twitterShare": ""
+      },
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#221B1A",
+        "secondary": "#3757FF"
+      }
     }
   ],
   "propHouse": [
