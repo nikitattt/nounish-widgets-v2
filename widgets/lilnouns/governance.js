@@ -219,7 +219,7 @@ function displayRound(round) {
     time = new Date(round.endTime)
     const deadline = getTime(time)
 
-    const titleText = w.addText(`${round.id} · ${round.title}`)
+    const titleText = w.addText(`PropHouse · ${round.title}`)
     titleText.textColor = pickByState(coolDarkText, warmDarkText)
     titleText.font = Font.semiboldSystemFont(12)
     titleText.lineLimit = 1
