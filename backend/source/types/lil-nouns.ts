@@ -11,6 +11,15 @@ export interface LilProposal {
   }
 }
 
+export interface LilPropHouseRound {
+  id: number
+  title: string
+  state: string
+  endTime: number
+  funding: string
+  proposals?: number
+}
+
 export type LilSeed = {
   head: number
   glasses: number
@@ -31,4 +40,5 @@ export interface LilAuction {
 export interface LilNouns {
   auction: LilAuction
   proposals?: LilProposal[]
+  propHouse?: LilPropHouseRound[]
 }

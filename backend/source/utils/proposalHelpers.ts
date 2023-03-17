@@ -20,6 +20,12 @@ export const getProposalState = (
   return null
 }
 
+export const getPropHouseRoundState = (status: string) => {
+  if (status === 'Upcoming') return 'PENDING'
+  else if (status === 'Open') return 'PROPOSING'
+  else return 'ACTIVE'
+}
+
 export const getProposalTitle = (proposal: ProposalSubgraphEntity) => {
   const titleEnd = proposal.description.indexOf('\n\n')
 
@@ -39,4 +45,14 @@ export const getProposalEndTimestamp = (
   }
 
   return Date.now() + blocksToGo * 12 * 1000
+}
+
+export const getPropHouseRoundTimestamp = (round: any) => {
+  let date
+
+  if (round.status === 'Upcoming') date = round.startTime
+  else if (round.status === 'Open') date = round.proposalEndTime
+  else date = round.votingEndTime
+
+  return new Date(date).getTime()
 }
