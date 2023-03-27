@@ -1,4 +1,4 @@
-const version = 2
+const version = 3
 
 await update()
 
@@ -113,6 +113,10 @@ function pickByState(cool, warm) {
 }
 
 function displayProposal(proposal) {
+    const proposalW = w.addStack()
+    proposalW.layoutVertically()
+    proposalW.url = widgetUrl + `/${proposal.id}`
+
     let barText
     let time
     let deadlinePrefix
@@ -138,14 +142,14 @@ function displayProposal(proposal) {
 
     const deadline = getTime(time)
 
-    const titleText = w.addText(`${proposal.id} · ${proposal.title}`)
+    const titleText = proposalW.addText(`${proposal.id} · ${proposal.title}`)
     titleText.textColor = pickByState(coolDarkText, warmDarkText)
     titleText.font = Font.semiboldSystemFont(12)
     titleText.lineLimit = 1
 
-    w.addSpacer(1)
+    proposalW.addSpacer(1)
 
-    const dataW = w.addStack()
+    const dataW = proposalW.addStack()
     dataW.centerAlignContent()
 
     if (proposal.state === "ACTIVE") {
