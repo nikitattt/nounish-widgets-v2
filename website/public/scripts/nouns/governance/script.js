@@ -1,4 +1,4 @@
-const version = 3
+const version = 4
 
 await update()
 
@@ -195,6 +195,10 @@ function displayProposal(proposal) {
 }
 
 function displayRound(round) {
+    const roundW = w.addStack()
+    roundW.layoutVertically()
+    roundW.url = `https://prop.house/nouns/${titleToSlug(round.title)}`
+
     let barText
     let time
     let deadlinePrefix
@@ -222,14 +226,14 @@ function displayRound(round) {
     time = new Date(round.endTime)
     const deadline = getTime(time)
 
-    const titleText = w.addText(`PropHouse · ${round.title}`)
+    const titleText = roundW.addText(`PropHouse · ${round.title}`)
     titleText.textColor = pickByState(coolDarkText, warmDarkText)
     titleText.font = Font.semiboldSystemFont(12)
     titleText.lineLimit = 1
 
-    w.addSpacer(1)
+    roundW.addSpacer(1)
 
-    const dataW = w.addStack()
+    const dataW = roundW.addStack()
     dataW.centerAlignContent()
 
     if (round.state === "ACTIVE") {
@@ -390,6 +394,10 @@ function unitedProposals(data) {
     const sortedProposals = activeProposals.concat(nonActiveProposals);
 
     return sortedProposals;
+}
+
+function titleToSlug(title) {
+    return title.replaceAll(' ', '-').toLowerCase();
 }
 
 async function update() {
