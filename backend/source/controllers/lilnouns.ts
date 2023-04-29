@@ -98,107 +98,112 @@ const getLilNounsData = async (
   // const provider = new AnkrProvider()
   const provider = new AlchemyProvider('mainnet', ALCHEMY_KEY) // TODO: Use custom key for nounish widgets
 
-  let result: AxiosResponse = await axios.post(url, { query: query })
-  const data = result.data.data
-
-  let bidder = '0x00...0000'
-  let amount = '0'
-
-  if (data.auctions[0].bidder && data.auctions[0].amount) {
-    const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
-    bidder = ens ? shortENS(ens) : shortAddress(data.auctions[0].bidder.id)
-
-    amount = data.auctions[0].amount
-  }
-
-  const { parts, background } = getNounData(data.auctions[0].noun.seed)
-  const svgBinary = buildSVG(parts, palette, background)
-  const svgBuffer = Buffer.from(svgBinary)
-  const pngBuffer = await sharp(svgBuffer).resize(100).png().toBuffer()
-  const image = pngBuffer.toString('base64')
-
-  const blockNumber = await provider.getBlockNumber()
-
-  const proposals = Array<LilProposal>()
-
-  for (const prop of data.proposals) {
-    const state = getProposalState(blockNumber, prop)
-
-    if (state) {
-      // proposals.push({
-      //   id: Number(prop.id),
-      //   title: getProposalTitle(prop),
-      //   state: state,
-      //   endTime: getProposalEndTimestamp(blockNumber, state, prop),
-      //   quorum: prop.quorumVotes
-      // })
-
-      let propToAdd: LilProposal = {
-        id: Number(prop.id),
-        title: prop.title,
-        state: state,
-        endTime: getProposalEndTimestamp(blockNumber, state, prop),
-        quorum: prop.quorumVotes
-      }
-
-      if (state === 'ACTIVE') {
-        propToAdd.votes = {
-          yes: prop.forVotes,
-          no: prop.againstVotes,
-          abstain: prop.abstainVotes
-        }
-      }
-
-      proposals.push(propToAdd)
-    }
-  }
-
-  let propHouse: LilPropHouseRound[] = []
   try {
-    let result: AxiosResponse = await axios.post(propHouseUrl, {
-      query: propHouseQuery
-    })
-    const propHouseData = result.data.data.community.auctions
+    let result: AxiosResponse = await axios.post(url, { query: query })
+    const data = result.data.data
 
-    for (const round of propHouseData) {
-      if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
-        const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
+    let bidder = '0x00...0000'
+    let amount = '0'
 
-        let roundToAdd: LilPropHouseRound = {
-          id: Number(round.id),
-          title: round.title,
-          state: getPropHouseRoundState(round.status),
-          funding: funding,
-          endTime: getPropHouseRoundTimestamp(round)
+    if (data.auctions[0].bidder && data.auctions[0].amount) {
+      const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
+      bidder = ens ? shortENS(ens) : shortAddress(data.auctions[0].bidder.id)
+
+      amount = data.auctions[0].amount
+    }
+
+    const { parts, background } = getNounData(data.auctions[0].noun.seed)
+    const svgBinary = buildSVG(parts, palette, background)
+    const svgBuffer = Buffer.from(svgBinary)
+    const pngBuffer = await sharp(svgBuffer).resize(100).png().toBuffer()
+    const image = pngBuffer.toString('base64')
+
+    const blockNumber = await provider.getBlockNumber()
+
+    const proposals = Array<LilProposal>()
+
+    for (const prop of data.proposals) {
+      const state = getProposalState(blockNumber, prop)
+
+      if (state) {
+        // proposals.push({
+        //   id: Number(prop.id),
+        //   title: getProposalTitle(prop),
+        //   state: state,
+        //   endTime: getProposalEndTimestamp(blockNumber, state, prop),
+        //   quorum: prop.quorumVotes
+        // })
+
+        let propToAdd: LilProposal = {
+          id: Number(prop.id),
+          title: prop.title,
+          state: state,
+          endTime: getProposalEndTimestamp(blockNumber, state, prop),
+          quorum: prop.quorumVotes
         }
 
-        if (['Open', 'Voting'].includes(round.status)) {
-          roundToAdd.proposals = round.proposals.length
+        if (state === 'ACTIVE') {
+          propToAdd.votes = {
+            yes: prop.forVotes,
+            no: prop.againstVotes,
+            abstain: prop.abstainVotes
+          }
         }
 
-        propHouse.push(roundToAdd)
+        proposals.push(propToAdd)
       }
     }
 
-    if (propHouse.length > 0) {
-      propHouse.sort((a, b) => a.endTime - b.endTime)
+    let propHouse: LilPropHouseRound[] = []
+    try {
+      let result: AxiosResponse = await axios.post(propHouseUrl, {
+        query: propHouseQuery
+      })
+      const propHouseData = result.data.data.community.auctions
+
+      for (const round of propHouseData) {
+        if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
+          const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
+
+          let roundToAdd: LilPropHouseRound = {
+            id: Number(round.id),
+            title: round.title,
+            state: getPropHouseRoundState(round.status),
+            funding: funding,
+            endTime: getPropHouseRoundTimestamp(round)
+          }
+
+          if (['Open', 'Voting'].includes(round.status)) {
+            roundToAdd.proposals = round.proposals.length
+          }
+
+          propHouse.push(roundToAdd)
+        }
+      }
+
+      if (propHouse.length > 0) {
+        propHouse.sort((a, b) => a.endTime - b.endTime)
+      }
+    } catch {}
+
+    let nounsData: LilNouns = {
+      auction: {
+        id: parseInt(data.auctions[0].id),
+        currentBid: ethers.utils.formatEther(amount),
+        bidder: bidder,
+        endTime: parseInt(data.auctions[0].endTime) * 1000,
+        image: image,
+        seed: data.auctions[0].noun.seed
+      },
+      proposals: proposals
     }
-  } catch {}
+    if (propHouse) nounsData.propHouse = propHouse
 
-  let nounsData: LilNouns = {
-    auction: {
-      id: parseInt(data.auctions[0].id),
-      currentBid: ethers.utils.formatEther(amount),
-      bidder: bidder,
-      endTime: parseInt(data.auctions[0].endTime) * 1000,
-      image: image,
-      seed: data.auctions[0].noun.seed
-    },
-    proposals: proposals
+    return res.status(200).json(nounsData)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json('Error happened while loading lil nouns data')
   }
-  if (propHouse) nounsData.propHouse = propHouse
-
-  return res.status(200).json(nounsData)
 }
 
 export default { getLilNounsData }
