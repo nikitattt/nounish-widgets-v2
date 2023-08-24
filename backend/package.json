@@ -11,9 +11,9 @@
   "author": "ng",
   "license": "ISC",
   "dependencies": {
-    "@lilnounsdao/assets": "^0.5.9",
-    "@nouns/assets": "^0.4.0",
-    "@nouns/sdk": "^0.2.0",
+    "@lilnounsdao/assets": "^0.5.13",
+    "@nouns/assets": "^0.5.0",
+    "@nouns/sdk": "^0.4.0",
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.14",
     "@types/morgan": "^1.9.3",
