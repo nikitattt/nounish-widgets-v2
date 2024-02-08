@@ -211,6 +211,7 @@ const getNounsData = async (
       },
       proposals: proposals
     }
+
     // if (propHouse) nounsData.propHouse = propHouse
     nounsData.propHouse = []
 
