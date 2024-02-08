@@ -41,7 +41,11 @@ const query = `
           id
         }
       },
-      proposals (where: {status_in: [PENDING, ACTIVE], id_gte: 495}) {
+      proposals(
+        where: {status_in: [PENDING, ACTIVE], id_gte: 495}
+        orderBy: endBlock
+        orderDirection: desc
+      ) {
         id
         proposer {
           id
@@ -167,6 +171,8 @@ const getNounsData = async (
         proposals.push(propToAdd)
       }
     }
+
+    proposals.sort((a, b) => a.id - b.id)
 
     // let propHouse: PropHouseRound[] = []
     // try {
