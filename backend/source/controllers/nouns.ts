@@ -62,24 +62,46 @@ const query = `
     }
   `
 
-const propHouseUrl = 'https://prod.backend.prop.house/graphql'
+// const propHouseUrl = 'https://prod.backend.prop.house/graphql'
+// const propHouseQuery = `
+//     query CommunityByAddress {
+//         findByAddress(address: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03") {
+//           id,
+//           name,
+//           auctions {
+//             id,
+//             status,
+//             title,
+//             startTime,
+//             proposalEndTime,
+//             votingEndTime,
+//             fundingAmount,
+//             currencyType,
+//             numWinners,
+//             proposals {
+//               id
+//             }
+//           }
+//         }
+//       }
+//   `
+
+const propHouseUrl =
+  'https://api.thegraph.com/subgraphs/name/prop-house/prop-house'
 const propHouseQuery = `
     query CommunityByAddress {
-        findByAddress(address: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03") {
-          id,
-          name,
-          auctions {
-            id,
-            status,
-            title,
-            startTime,
-            proposalEndTime,
-            votingEndTime,
-            fundingAmount,
-            currencyType,
-            numWinners,
-            proposals {
-              id
+        house(id: "0x5d75fd351e7b29a4ecad708d1e19d137c71c5404") {
+          rounds {
+            id
+            title
+            timedConfig {
+              proposalPeriodEndTimestamp
+              proposalPeriodStartTimestamp
+              proposalPeriodDuration
+              
+              votePeriodEndTimestamp
+              votePeriodStartTimestamp
+              votePeriodDuration
             }
           }
         }
@@ -146,37 +168,37 @@ const getNounsData = async (
       }
     }
 
-    let propHouse: PropHouseRound[] = []
-    try {
-      let result: AxiosResponse = await axios.post(propHouseUrl, {
-        query: propHouseQuery
-      })
-      const propHouseData = result.data.data.findByAddress.auctions
+    // let propHouse: PropHouseRound[] = []
+    // try {
+    //   let result: AxiosResponse = await axios.post(propHouseUrl, {
+    //     query: propHouseQuery
+    //   })
+    //   const propHouseData = result.data.data.findByAddress.auctions
 
-      for (const round of propHouseData) {
-        if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
-          const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
+    //   for (const round of propHouseData) {
+    //     if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
+    //       const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
 
-          let roundToAdd: PropHouseRound = {
-            id: Number(round.id),
-            title: round.title,
-            state: getPropHouseRoundState(round.status),
-            funding: funding,
-            endTime: getPropHouseRoundTimestamp(round)
-          }
+    //       let roundToAdd: PropHouseRound = {
+    //         id: Number(round.id),
+    //         title: round.title,
+    //         state: getPropHouseRoundState(round.status),
+    //         funding: funding,
+    //         endTime: getPropHouseRoundTimestamp(round)
+    //       }
 
-          if (['Open', 'Voting'].includes(round.status)) {
-            roundToAdd.proposals = round.proposals.length
-          }
+    //       if (['Open', 'Voting'].includes(round.status)) {
+    //         roundToAdd.proposals = round.proposals.length
+    //       }
 
-          propHouse.push(roundToAdd)
-        }
-      }
+    //       propHouse.push(roundToAdd)
+    //     }
+    //   }
 
-      if (propHouse.length > 0) {
-        propHouse.sort((a, b) => a.endTime - b.endTime)
-      }
-    } catch {}
+    //   if (propHouse.length > 0) {
+    //     propHouse.sort((a, b) => a.endTime - b.endTime)
+    //   }
+    // } catch {}
 
     let nounsData: Nouns = {
       auction: {
@@ -189,7 +211,7 @@ const getNounsData = async (
       },
       proposals: proposals
     }
-    if (propHouse) nounsData.propHouse = propHouse
+    // if (propHouse) nounsData.propHouse = propHouse
 
     return res.status(200).json(nounsData)
   } catch (error) {
