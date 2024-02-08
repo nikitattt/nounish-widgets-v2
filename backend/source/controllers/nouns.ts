@@ -212,6 +212,7 @@ const getNounsData = async (
       proposals: proposals
     }
     // if (propHouse) nounsData.propHouse = propHouse
+    nounsData.propHouse = []
 
     return res.status(200).json(nounsData)
   } catch (error) {
