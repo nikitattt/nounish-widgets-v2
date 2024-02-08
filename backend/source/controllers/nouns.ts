@@ -41,7 +41,7 @@ const query = `
           id
         }
       },
-      proposals (where: {status_in: [PENDING, ACTIVE]}) {
+      proposals (where: {status_in: [PENDING, ACTIVE], id_gte: 495}) {
         id
         proposer {
           id
