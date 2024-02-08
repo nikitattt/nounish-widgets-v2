@@ -25,7 +25,7 @@ const { palette } = ImageData
 const url =
   'https://api.thegraph.com/subgraphs/name/lilnounsdao/lil-nouns-subgraph'
 const query = `
-    query NounsData {
+    query LilNounsData {
       auctions(where: {settled: false}) {
         id,
         noun {
@@ -43,7 +43,11 @@ const query = `
           id
         }
       },
-      proposals (where: {status_in: [PENDING, ACTIVE]}) {
+      proposals(
+        where: {status_in: [PENDING, ACTIVE]}
+        orderBy: endBlock
+        orderDirection: desc
+      ) {
         id
         proposer {
           id
@@ -153,38 +157,39 @@ const getLilNounsData = async (
         proposals.push(propToAdd)
       }
     }
+    proposals.sort((a, b) => a.id - b.id)
 
-    let propHouse: LilPropHouseRound[] = []
-    try {
-      let result: AxiosResponse = await axios.post(propHouseUrl, {
-        query: propHouseQuery
-      })
-      const propHouseData = result.data.data.community.auctions
+    // let propHouse: LilPropHouseRound[] = []
+    // try {
+    //   let result: AxiosResponse = await axios.post(propHouseUrl, {
+    //     query: propHouseQuery
+    //   })
+    //   const propHouseData = result.data.data.community.auctions
 
-      for (const round of propHouseData) {
-        if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
-          const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
+    //   for (const round of propHouseData) {
+    //     if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
+    //       const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
 
-          let roundToAdd: LilPropHouseRound = {
-            id: Number(round.id),
-            title: round.title,
-            state: getPropHouseRoundState(round.status),
-            funding: funding,
-            endTime: getPropHouseRoundTimestamp(round)
-          }
+    //       let roundToAdd: LilPropHouseRound = {
+    //         id: Number(round.id),
+    //         title: round.title,
+    //         state: getPropHouseRoundState(round.status),
+    //         funding: funding,
+    //         endTime: getPropHouseRoundTimestamp(round)
+    //       }
 
-          if (['Open', 'Voting'].includes(round.status)) {
-            roundToAdd.proposals = round.proposals.length
-          }
+    //       if (['Open', 'Voting'].includes(round.status)) {
+    //         roundToAdd.proposals = round.proposals.length
+    //       }
 
-          propHouse.push(roundToAdd)
-        }
-      }
+    //       propHouse.push(roundToAdd)
+    //     }
+    //   }
 
-      if (propHouse.length > 0) {
-        propHouse.sort((a, b) => a.endTime - b.endTime)
-      }
-    } catch {}
+    //   if (propHouse.length > 0) {
+    //     propHouse.sort((a, b) => a.endTime - b.endTime)
+    //   }
+    // } catch {}
 
     let nounsData: LilNouns = {
       auction: {
@@ -197,7 +202,8 @@ const getLilNounsData = async (
       },
       proposals: proposals
     }
-    if (propHouse) nounsData.propHouse = propHouse
+    // if (propHouse) nounsData.propHouse = propHouse
+    nounsData.propHouse = []
 
     return res.status(200).json(nounsData)
   } catch (error) {
