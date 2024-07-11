@@ -21,7 +21,8 @@ const ALCHEMY_KEY = process.env.ALCHEMY_KEY
 
 const { palette } = ImageData
 
-const url = 'https://api.goldsky.com/api/public/project_cldf2o9pqagp43svvbk5u3kmo/subgraphs/nouns/prod/gn'
+const url =
+  'https://api.goldsky.com/api/public/project_cldf2o9pqagp43svvbk5u3kmo/subgraphs/nouns/prod/gn'
 const query = `
     query NounsData {
       auctions(where: {settled: false}) {
