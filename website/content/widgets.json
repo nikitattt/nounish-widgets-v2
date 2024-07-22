@@ -155,7 +155,12 @@
       },
       "size": "small",
       "type": "general",
-      "additionalSizes": ["big"],
+      "additionalSizes": [
+        {
+          "size": "big",
+          "image": "/img/nouns/art/main-big.png"
+        }
+      ],
       "meta": {
         "title": "Nouns Art Widget",
         "description": "Noun. Every Day. On your screen.",
