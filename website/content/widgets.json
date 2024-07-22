@@ -137,6 +137,38 @@
         "accent": "#221B1A",
         "secondary": "#3757FF"
       }
+    },
+    {
+      "slug": "art",
+      "title": "Art Widget",
+      "description": "Noun. Every Day. On your screen.",
+      "images": {
+        "promoFull": "/img/nouns/small-auction/main.png",
+        "promoShort": "/img/nouns/small-auction/main.png",
+        "icon": "/img/nouns/small-auction/icon.png"
+      },
+      "script": {
+        "urlPath": "https://nounswidgets.wtf/scripts/nouns/art",
+        "name": "Nouns Art",
+        "icon": "adjust",
+        "color": "red"
+      },
+      "size": "small",
+      "type": "general",
+      "additionalSizes": ["big"],
+      "meta": {
+        "title": "Nouns Art Widget",
+        "description": "Noun. Every Day. On your screen.",
+        "shareImage": "https://nounswidgets.wtf/img/nouns/small-auction/share.png",
+        "url": "https://nounswidgets.wtf/nouns/art",
+        "twitterShare": ""
+      },
+      "updates": [],
+      "theme": {
+        "background": "#FFF",
+        "accent": "#3757FF",
+        "secondary": "#FFC700"
+      }
     }
   ],
   "lilNouns": [
