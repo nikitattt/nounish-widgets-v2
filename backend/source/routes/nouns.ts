@@ -5,6 +5,7 @@ import lilNounsController from '../controllers/lilnouns'
 const router = express.Router()
 
 router.get('/nouns', nounsController.getNounsData)
+router.get('/nouns/art', nounsController.getNounsData)
 router.get('/lil-nouns', lilNounsController.getLilNounsData)
 
 export = router
