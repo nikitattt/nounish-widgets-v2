@@ -49,7 +49,7 @@ const getNounsArtData = async (
     const { parts, background } = getNounData(data.auctions[0].noun.seed)
     const svgBinary = buildSVG(parts, palette, background)
     const svgBuffer = Buffer.from(svgBinary)
-    const pngBuffer = await sharp(svgBuffer).resize(2000).png().toBuffer()
+    const pngBuffer = await sharp(svgBuffer).resize(500).png().toBuffer()
     const image = pngBuffer.toString('base64')
 
     let nounsData = {
