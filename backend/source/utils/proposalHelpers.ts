@@ -38,6 +38,7 @@ export const getProposalEndTimestamp = (
   proposal: ProposalSubgraphEntity
 ) => {
   let blocksToGo
+
   if (state === 'ACTIVE') {
     blocksToGo = parseInt(proposal.endBlock) - blockNumber
   } else {
