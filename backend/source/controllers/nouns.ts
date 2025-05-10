@@ -4,16 +4,13 @@ import { ethers } from 'ethers'
 import { ImageData, getNounData } from '@nouns/assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
-import { AnkrProvider } from '@ethersproject/providers'
 import { AlchemyProvider } from '@ethersproject/providers'
 import {
-  getPropHouseRoundState,
-  getPropHouseRoundTimestamp,
   getProposalEndTimestamp,
   getProposalState
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
-import { Nouns, PropHouseRound, Proposal } from '../types/nouns'
+import { Nouns, Proposal } from '../types/nouns'
 
 require('dotenv').config()
 
@@ -66,30 +63,6 @@ const query = `
       }
     }
   `
-
-// const propHouseUrl = 'https://prod.backend.prop.house/graphql'
-// const propHouseQuery = `
-//     query CommunityByAddress {
-//         findByAddress(address: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03") {
-//           id,
-//           name,
-//           auctions {
-//             id,
-//             status,
-//             title,
-//             startTime,
-//             proposalEndTime,
-//             votingEndTime,
-//             fundingAmount,
-//             currencyType,
-//             numWinners,
-//             proposals {
-//               id
-//             }
-//           }
-//         }
-//       }
-//   `
 
 const propHouseUrl =
   'https://api.thegraph.com/subgraphs/name/prop-house/prop-house'
