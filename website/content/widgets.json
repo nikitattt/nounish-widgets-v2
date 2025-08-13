@@ -143,9 +143,9 @@
       "title": "Art Widget",
       "description": "Noun. Every Day. On your screen.",
       "images": {
-        "promoFull": "/img/nouns/small-auction/main.png",
-        "promoShort": "/img/nouns/small-auction/main.png",
-        "icon": "/img/nouns/small-auction/icon.png"
+        "promoFull": "/img/nouns/small-art/main.png",
+        "promoShort": "/img/nouns/small-art/main.png",
+        "icon": "/img/nouns/small-art/icon.png"
       },
       "script": {
         "urlPath": "https://nounswidgets.wtf/scripts/nouns/art",
@@ -164,7 +164,7 @@
       "meta": {
         "title": "Nouns Art Widget",
         "description": "Noun. Every Day. On your screen.",
-        "shareImage": "https://nounswidgets.wtf/img/nouns/small-auction/share.png",
+        "shareImage": "https://nounswidgets.wtf/img/nouns/small-art/share.png",
         "url": "https://nounswidgets.wtf/nouns/art",
         "twitterShare": ""
       },
