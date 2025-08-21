@@ -78,6 +78,8 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#FFFFFF" />
+        <meta property="og:image" content="/img/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <body>
         <Main />
