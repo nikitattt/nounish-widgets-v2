@@ -1,5 +1,11 @@
-fileManager = FileManager.iCloud()
-documentsDirectory = fileManager.documentsDirectory()
+let fileManager
+try {
+  fileManager = FileManager.iCloud()
+  fileManager.documentsDirectory()
+} catch (e) {
+  fileManager = FileManager.local()
+}
+let documentsDirectory = fileManager.documentsDirectory()
 
 let filePath = fileManager.joinPath(documentsDirectory, scriptName + '.js');
 let req = new Request(`${urlPath}/script.js`);
