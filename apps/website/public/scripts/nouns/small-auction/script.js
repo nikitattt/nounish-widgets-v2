@@ -1,4 +1,4 @@
-const version = 2
+const version = 3
 
 await update()
 
@@ -206,15 +206,24 @@ async function update() {
     let req = new Request(`${urlPath}/versions.json`);
     let versions = await req.loadJSON();
     if (versions.latestVersion > version) {
-        fileManager = FileManager.iCloud()
-        documentsDirectory = fileManager.documentsDirectory()
+        let fileManager
+        try {
+            fileManager = FileManager.iCloud()
+            // Check if the current script is stored in iCloud.
+            // If it is, use the iCloud file manager.
+            // If not (it's local), fallback to the local file manager.
+            if (!fileManager.isFileStoredIniCloud(module.filename)) {
+                fileManager = FileManager.local()
+            }
+        } catch (e) {
+            fileManager = FileManager.local()
+        }
 
         let req = new Request(`${urlPath}/script.js`);
         let code = await req.loadString();
 
         let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support: @iamng_eth\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
-        let selfFilePath = fileManager.joinPath(documentsDirectory, Script.name() + '.js');
-        fileManager.write(selfFilePath, codeToStore);
+        fileManager.write(module.filename, codeToStore);
         let callback = new CallbackURL("scriptable:///run");
         callback.addParameter("scriptName", Script.name());
         callback.open();
