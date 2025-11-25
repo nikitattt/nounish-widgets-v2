@@ -1,6 +1,5 @@
 import React, { ReactElement, useMemo } from 'react'
 import QRCodeUtil from 'qrcode'
-import Image from 'next/image'
 import clsx from 'clsx'
 
 const generateMatrix = (
@@ -127,7 +126,7 @@ export function QRCode({
           `top-[71px] left-[71px]`
         )}
       >
-        <Image src={imagePath} height={145} width={145} alt="QR Icon" />
+        <img src={imagePath} height={145} width={145} alt="QR Icon" />
       </div>
       <svg height={size} style={{ all: 'revert' }} width={size}>
         <defs>
