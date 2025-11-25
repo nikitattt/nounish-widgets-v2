@@ -1,0 +1,16 @@
+{
+  "name": "nounish-widgets",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build:backend": "bun --filter backend build",
+    "start:backend": "bun --filter backend start",
+    "dev:backend": "bun --filter backend dev",
+    "dev:website": "bun --filter website dev",
+    "build:website": "bun --filter website build",
+    "start:website": "bun --filter website start"
+  },
+  "packageManager": "bun@1.3.1"
+}
