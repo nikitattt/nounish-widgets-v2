@@ -9,7 +9,7 @@ let documentsDirectory = fileManager.documentsDirectory()
 let filePath = fileManager.joinPath(documentsDirectory, scriptName + '.js');
 let req = new Request(`${urlPath}/script.js`);
 let code = await req.loadString();
-let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support:\nX: @iamng_eth\nFarcaster: @iamng\n// Website: nounswidgets.wtf\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
+let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support:\n// X: @iamng_eth\n// Farcaster: @iamng\n// Website: nounswidgets.wtf\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
 fileManager.write(filePath, codeToStore);
 let selfFilePath = fileManager.joinPath(documentsDirectory, Script.name() + '.js');
 fileManager.remove(selfFilePath);
