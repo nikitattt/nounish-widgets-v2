@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { devMode } from '../../utils/devMode'
 import { Button } from '../Button'
@@ -78,7 +77,7 @@ const InstallInstructions = ({
   return (
     <div className="max-w-screen-md mx-auto my-20 text-center text-lg px-8">
       {/* <div className="w-28 h-28 mx-auto mb-20 shadow-xl rounded-2xl shadow-sky/10">
-    <Image alt="" src={widget.images.icon} height={485} width={485} />
+    <img alt="" src={widget.images.icon} height={485} width={485} />
   </div> */}
       <h1
         className="mt-0 sm:mt-12 font-black text-5xl sm:text-6xl"
@@ -88,7 +87,7 @@ const InstallInstructions = ({
       </h1>
       <div className="mt-4 text-xl sm:text-2xl">{widget.description}</div>
       <div className="mt-20 max-w-sm mx-auto">
-        <Image
+        <img
           alt=""
           className="rounded-xl"
           src={widget.images.promoFull}
@@ -153,7 +152,7 @@ const InstallInstructions = ({
           </Button>
         </div>
         <div className="-mx-6 mt-4">
-          <Image
+          <img
             alt=""
             className="rounded-xl"
             src="/img/shared/scriptable.png"
@@ -202,7 +201,7 @@ const InstallInstructions = ({
             Copy
           </Button>
           <div className="-mx-6 mt-10">
-            <Image
+            <img
               alt=""
               className="rounded-xl"
               src="/img/shared/save-copy.png"
@@ -238,7 +237,7 @@ const InstallInstructions = ({
           </Button>
         </div>
         <div className="-mx-6 mt-10">
-          <Image
+          <img
             alt=""
             className="rounded-xl"
             src="/img/shared/add-code.png"
@@ -270,7 +269,7 @@ const InstallInstructions = ({
           "settings" and click "Edit Widget".
         </div>
         <div className="-mx-6 mt-4">
-          <Image
+          <img
             alt=""
             className="rounded-xl"
             src={`/img/shared/${widget.size}-edit-widget.png`}
@@ -290,7 +289,7 @@ const InstallInstructions = ({
           script.
         </div>
         <div className="-mx-6 mt-4">
-          <Image
+          <img
             alt=""
             className="rounded-xl"
             src="/img/shared/choose-script.png"
@@ -322,7 +321,7 @@ const InstallInstructions = ({
               </Button>
             </div>
             <div className="-mx-6 mt-10">
-              <Image
+              <img
                 alt=""
                 className="rounded-xl"
                 src="/img/prop-house/shared/copy-address.png"
@@ -340,7 +339,7 @@ const InstallInstructions = ({
               Paste copied community address as widget parameter.
             </div>
             <div className="-mx-6 mt-4">
-              <Image
+              <img
                 alt=""
                 className="rounded-xl"
                 src="/img/prop-house/shared/set-parameter.png"

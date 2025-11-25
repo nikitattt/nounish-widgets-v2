@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 
 import widgets from '../content/widgets.json'
@@ -112,7 +111,7 @@ const Home: NextPage<{ data: any }> = (props) => {
 
       {/* Widgets */}
       <div className="hidden lg:block absolute mr-[26%] right-1/2 mt-20 -rotate-12 max-w-xs">
-        <Image
+        <img
           src="/img/nouns/medium-general/icon.png"
           width="1000"
           height="500"
@@ -121,7 +120,7 @@ const Home: NextPage<{ data: any }> = (props) => {
       </div>
       {/* <div className="hidden lg:block absolute mt-64 ml-[26%] left-1/2 rotate-12 max-w-[160px]"> */}
       <div className="hidden lg:block absolute mt-40 ml-[26%] left-1/2 rotate-12 max-w-[160px]">
-        <Image
+        <img
           src="/img/nouns/small-auction/icon.png"
           width="500"
           height="500"
@@ -131,15 +130,10 @@ const Home: NextPage<{ data: any }> = (props) => {
 
       {/* Glasses */}
       <div className="hidden lg:block absolute mr-[30%] right-1/2 mt-72 rotate-[12deg] max-w-[100px]">
-        <Image
-          src="/img/icons/nouns-blue.png"
-          width="160"
-          height="160"
-          alt=""
-        />
+        <img src="/img/icons/nouns-blue.png" width="160" height="160" alt="" />
       </div>
       <div className="hidden lg:block absolute mt-20 ml-[36%] left-1/2 rotate-[8deg] max-w-[60px]">
-        <Image src="/img/icons/nouns-red.png" width="160" height="160" alt="" />
+        <img src="/img/icons/nouns-red.png" width="160" height="160" alt="" />
       </div>
 
       {/* Body */}
@@ -162,7 +156,7 @@ const Home: NextPage<{ data: any }> = (props) => {
           </span>
         </p>
         <div className="mt-28 sm:mt-40 w-24 mx-auto">
-          <Image
+          <img
             src="/img/icons/nouns-black.png"
             alt="Nouns Icon"
             height={160}
@@ -183,7 +177,7 @@ const Home: NextPage<{ data: any }> = (props) => {
           })}
         </div>
         <div className="mt-28 sm:mt-40 w-24 mx-auto">
-          <Image
+          <img
             src="/img/icons/lil-nouns-black.png"
             alt="Nouns Icon"
             height={160}
@@ -203,7 +197,7 @@ const Home: NextPage<{ data: any }> = (props) => {
           })}
         </div>
         {/* <div className="mt-28 sm:mt-40 w-20 mx-auto">
-          <Image
+          <img
             src="/img/icons/prop-house.png"
             alt="Nouns Icon"
             height={400}
