@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon source/server.ts",
-    "build": "rm -rf build/ && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "PORT=6084 bun --watch ./source/server.ts",
+    "build": "bun prepare:build && bun compile",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./dist/backend",
+    "compile": "bun build --compile --compile-exec-argv=\"--smol\" --minify --sourcemap ./source/index.ts --outfile dist/backend"
   },
   "author": "ng",
   "license": "ISC",
