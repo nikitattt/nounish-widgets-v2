@@ -1,4 +1,4 @@
-const version = 2
+const version = 3
 
 await update()
 
@@ -225,7 +225,7 @@ async function update() {
         let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n// Created by: ng\n// Support: @iamng_eth\n\nconst urlPath = '${urlPath}'\nconst icon = '${icon}'\nconst color = '${color}'\n\n${code}`);
         // let selfFilePath = fileManager.joinPath(documentsDirectory, Script.name() + '.js');
         // fileManager.write(selfFilePath, codeToStore);
-        
+
         // module.filename is the absolute path to the current script.
         // We overwrite the current script with the new code.
         fileManager.write(module.filename, codeToStore);
