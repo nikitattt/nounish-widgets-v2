@@ -246,6 +246,13 @@ const InstallInstructions = ({
             width={1291}
           />
         </div>
+        <div className="mt-4 bg-yellow/5 border border-yellow/20 p-3 rounded-2xl">
+          <p className="text-xs font-medium leading-4 text-yellow">
+            ⚠️ Widget's code is currently saved to iCloud folder. If you have
+            restricted access, you will see "Failed writing to disk" error. In
+            several days there will be updated code that works without iCloud.
+          </p>
+        </div>
         <div
           className="mt-12 text-6xl font-black p-10"
           style={{ color: widget.theme.secondary }}
