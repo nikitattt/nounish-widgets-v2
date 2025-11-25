@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express'
 import axios, { AxiosResponse } from 'axios'
 import { createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -85,11 +84,7 @@ const propHouseQuery = `
       }
   `
 
-const getNounsData = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getNounsData = async (req: Request): Promise<Response> => {
   // get the id from the req
   // let id: string = req.params.id;
   const client = createPublicClient({
@@ -198,10 +193,14 @@ const getNounsData = async (
     // if (propHouse) nounsData.propHouse = propHouse
     nounsData.propHouse = []
 
-    return res.status(200).json(nounsData)
+    return Response.json(nounsData, {
+      status: 200
+    })
   } catch (error) {
     console.log(error)
-    return res.status(500).json('Error happened while loading nouns data')
+    return Response.json('Error happened while loading nouns data', {
+      status: 500
+    })
   }
 }
 

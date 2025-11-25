@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from 'express'
 import axios, { AxiosResponse } from 'axios'
 import { ImageData, getNounData } from '@noundry/nouns-assets'
 import { buildSVG } from '@nouns/sdk'
@@ -25,11 +24,7 @@ const query = `
     }
   `
 
-const getNounsArtData = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getNounsArtData = async (req: Request): Promise<Response> => {
   try {
     let result: AxiosResponse = await axios.post(url, { query: query })
     const data = result.data.data
@@ -48,10 +43,14 @@ const getNounsArtData = async (
       }
     }
 
-    return res.status(200).json(nounsData)
+    return Response.json(nounsData, {
+      status: 200
+    })
   } catch (error) {
     console.log(error)
-    return res.status(500).json('Error happened while loading nouns data')
+    return Response.json('Error happened while loading nouns data', {
+      status: 500
+    })
   }
 }
 

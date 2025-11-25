@@ -1,48 +1,24 @@
-import http from 'http'
-import express, { Express } from 'express'
-import morgan from 'morgan'
-import routes from './routes/nouns'
+import nounsController from './controllers/nouns'
+import lilNounsController from './controllers/lilnouns'
+import nounsArtController from './controllers/nounsArt'
 
-const router: Express = express()
+const PORT = Number(process.env.PORT ?? 6084)
 
-/** Logging */
-router.use(morgan('dev'))
-/** Parse the request */
-router.use(express.urlencoded({ extended: false }))
-/** Takes care of JSON data */
-router.use(express.json())
-
-/** RULES OF OUR API */
-router.use((req, res, next) => {
-  // set the CORS policy
-  res.header('Access-Control-Allow-Origin', '*')
-  // set the CORS headers
-  res.header(
-    'Access-Control-Allow-Headers',
-    'origin, X-Requested-With,Content-Type,Accept, Authorization'
-  )
-  // set the CORS method headers
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'GET')
-    return res.status(200).json({})
+Bun.serve({
+  port: PORT,
+  routes: {
+    '/health': new Response('OK', { status: 200 }),
+    '/nouns': {
+      GET: nounsController.getNounsData
+    },
+    '/nouns/art': {
+      GET: nounsArtController.getNounsArtData
+    },
+    '/lil-nouns': {
+      GET: lilNounsController.getLilNounsData
+    },
+    '/*': new Response('Not Found', { status: 404 })
   }
-  next()
 })
 
-/** Routes */
-router.use('/', routes)
-
-/** Error handling */
-router.use((req, res, next) => {
-  const error = new Error('Not Found')
-  return res.status(404).json({
-    message: error.message
-  })
-})
-
-/** Server */
-const httpServer = http.createServer(router)
-const PORT: any = process.env.PORT ?? 6060
-httpServer.listen(PORT, () =>
-  console.log(`The server is running on port ${PORT}`)
-)
+console.log(`The server is running on port ${PORT}`)
