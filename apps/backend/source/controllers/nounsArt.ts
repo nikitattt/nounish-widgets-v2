@@ -1,20 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import axios, { AxiosResponse } from 'axios'
-import { ethers } from 'ethers'
 import { ImageData, getNounData } from '@noundry/nouns-assets'
 import { buildSVG } from '@nouns/sdk'
-import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
-import { AlchemyProvider } from '@ethersproject/providers'
-import {
-  getProposalEndTimestamp,
-  getProposalState
-} from '../utils/proposalHelpers'
 import sharp from 'sharp'
-import { Nouns, Proposal } from '../types/nouns'
-
-require('dotenv').config()
-
-const ALCHEMY_KEY = process.env.ALCHEMY_KEY
 
 const { palette } = ImageData
 

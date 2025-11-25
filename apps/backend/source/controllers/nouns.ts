@@ -1,18 +1,17 @@
 import { Request, Response, NextFunction } from 'express'
 import axios, { AxiosResponse } from 'axios'
-import { ethers } from 'ethers'
+import { createPublicClient, http } from 'viem'
+import { mainnet } from 'viem/chains'
+import { formatEther } from 'viem/utils'
 import { ImageData, getNounData } from '@noundry/nouns-assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
-import { AlchemyProvider } from '@ethersproject/providers'
 import {
   getProposalEndTimestamp,
   getProposalState
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
 import { Nouns, Proposal } from '../types/nouns'
-
-require('dotenv').config()
 
 const ALCHEMY_KEY = process.env.ALCHEMY_KEY
 
@@ -93,8 +92,10 @@ const getNounsData = async (
 ) => {
   // get the id from the req
   // let id: string = req.params.id;
-  // const provider = new AnkrProvider()
-  const provider = new AlchemyProvider('mainnet', ALCHEMY_KEY) // TODO: Use custom key for nounish widgets
+  const client = createPublicClient({
+    chain: mainnet,
+    transport: http(`https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`)
+  }) // TODO: Use custom key for nounish widgets
 
   try {
     let result: AxiosResponse = await axios.post(url, { query: query })
@@ -104,7 +105,9 @@ const getNounsData = async (
     let amount = '0'
 
     if (data.auctions[0].bidder && data.auctions[0].amount) {
-      const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
+      const ens = await client.getEnsName({
+        address: data.auctions[0].bidder.id as `0x${string}`
+      })
       bidder = ens ? shortENS(ens) : shortAddress(data.auctions[0].bidder.id)
 
       amount = data.auctions[0].amount
@@ -116,7 +119,7 @@ const getNounsData = async (
     const pngBuffer = await sharp(svgBuffer).resize(100).png().toBuffer()
     const image = pngBuffer.toString('base64')
 
-    const blockNumber = await provider.getBlockNumber()
+    const blockNumber = Number(await client.getBlockNumber())
 
     const proposals = Array<Proposal>()
 
@@ -183,7 +186,7 @@ const getNounsData = async (
     let nounsData: Nouns = {
       auction: {
         id: parseInt(data.auctions[0].id),
-        currentBid: ethers.utils.formatEther(amount),
+        currentBid: formatEther(BigInt(amount)),
         bidder: bidder,
         endTime: parseInt(data.auctions[0].endTime) * 1000,
         image: image,
