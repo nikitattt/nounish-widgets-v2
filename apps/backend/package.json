@@ -8,7 +8,7 @@
     "build": "bun compile",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./dist/backend",
-    "compile": "bun build --compile --compile-exec-argv=\"--smol\" --minify --sourcemap ./source/index.ts --outfile dist/backend"
+    "compile": "bun build --compile --compile-exec-argv=\"--smol\" --minify --sourcemap ./source/server.ts --outfile dist/backend"
   },
   "author": "ng",
   "license": "ISC",

@@ -172,7 +172,13 @@ const Home: NextPage<{ data: any }> = (props) => {
         <div className="mt-14 sm:mt-20 flex flex-col gap-12 sm:gap-36 max-w-2xl mx-auto">
           {data.nouns.map((e: any, i: number) => {
             return (
-              <WidgetLink family="nouns" slug={e.slug} widget={e} index={i} />
+              <WidgetLink
+                key={i}
+                family="nouns"
+                slug={e.slug}
+                widget={e}
+                index={i}
+              />
             )
           })}
         </div>
