@@ -7,7 +7,6 @@ Available at https://nounswidgets.wtf
 ## Structure
 
 ```
-/
 ├─ apps/
 │   ├─ backend   → API that loads & transforms auction, image, and governance data
 │   └─ website   → Installation pages + prod widget code
