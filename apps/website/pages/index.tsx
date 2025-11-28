@@ -229,6 +229,14 @@ const Home: NextPage<{ data: any }> = (props) => {
           >
             <p className="text-brand-twitter underline">@ng</p>
           </a>
+          <p>•</p>
+          <a
+            className="cursor-pointer"
+            target="_blank"
+            href={'https://github.com/nikitattt/nounish-widgets-v2'}
+          >
+            <p className="text-black underline">GitHub</p>
+          </a>
         </div>
       </footer>
     </div>
