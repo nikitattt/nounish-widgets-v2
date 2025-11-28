@@ -1,4 +1,4 @@
-# Nouns Widgets V1
+# Nouns Widgets
 
 ![header](https://nounishimg.iamng.wtf/widgets-retro-and-infra-support/header.jpg)
 
