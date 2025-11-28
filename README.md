@@ -14,6 +14,10 @@ Available at https://nounswidgets.wtf
 └─ widgets/      → Scriptable-compatible JavaScript for each widget(non-prod)
 ```
 
+## Usage
+
+You will need an Alchemy RPC key to run `backend` service.
+
 ## Licensing
 
 **Open-source / community use**  
