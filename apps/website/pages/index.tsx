@@ -235,7 +235,15 @@ const Home: NextPage<{ data: any }> = (props) => {
             target="_blank"
             href={'https://github.com/nikitattt/nounish-widgets-v2'}
           >
-            <p className="text-black underline">GitHub</p>
+            <p className="text-black underline">GitHub (Current)</p>
+          </a>
+          <p>•</p>
+          <a
+            className="cursor-pointer"
+            target="_blank"
+            href={'https://github.com/nikitattt/nounish-widgets'}
+          >
+            <p className="text-black underline">GitHub (V1)</p>
           </a>
         </div>
       </footer>
