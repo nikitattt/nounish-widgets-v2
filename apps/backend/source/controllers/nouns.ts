@@ -13,11 +13,12 @@ import sharp from 'sharp'
 import { Nouns, Proposal } from '../types/nouns'
 
 const ALCHEMY_KEY = process.env.ALCHEMY_KEY
+const GRAPH_API_KEY = process.env.GRAPH_API_KEY
 
 const { palette } = ImageData
 
 const url =
-  'https://api.goldsky.com/api/public/project_cldf2o9pqagp43svvbk5u3kmo/subgraphs/nouns/prod/gn'
+  'https://gateway.thegraph.com/api/subgraphs/id/5qcR6rAfDMZCVGuZ6DDois7y4zyXqsyqvaqhE6NRRraW'
 const query = `
     query NounsData {
       auctions(where: {settled: false}) {
@@ -62,28 +63,6 @@ const query = `
     }
   `
 
-const propHouseUrl =
-  'https://api.thegraph.com/subgraphs/name/prop-house/prop-house'
-const propHouseQuery = `
-    query CommunityByAddress {
-        house(id: "0x5d75fd351e7b29a4ecad708d1e19d137c71c5404") {
-          rounds {
-            id
-            title
-            timedConfig {
-              proposalPeriodEndTimestamp
-              proposalPeriodStartTimestamp
-              proposalPeriodDuration
-              
-              votePeriodEndTimestamp
-              votePeriodStartTimestamp
-              votePeriodDuration
-            }
-          }
-        }
-      }
-  `
-
 const getNounsData = async (req: Request): Promise<Response> => {
   // get the id from the req
   // let id: string = req.params.id;
@@ -93,8 +72,22 @@ const getNounsData = async (req: Request): Promise<Response> => {
   }) // TODO: Use custom key for nounish widgets
 
   try {
-    let result: AxiosResponse = await axios.post(url, { query: query })
+    let result: AxiosResponse = await axios.post(
+      url,
+      { query: query },
+      {
+        headers: {
+          Authorization: `Bearer ${GRAPH_API_KEY}`
+        }
+      }
+    )
+
     const data = result.data.data
+
+    if (result.data.errors && result.data.errors.length > 0) {
+      console.error(result.data.errors)
+      throw new Error('Failed to fetch data')
+    }
 
     let bidder = '-'
     let amount = '0'
@@ -146,38 +139,6 @@ const getNounsData = async (req: Request): Promise<Response> => {
 
     proposals.sort((a, b) => a.id - b.id)
 
-    // let propHouse: PropHouseRound[] = []
-    // try {
-    //   let result: AxiosResponse = await axios.post(propHouseUrl, {
-    //     query: propHouseQuery
-    //   })
-    //   const propHouseData = result.data.data.findByAddress.auctions
-
-    //   for (const round of propHouseData) {
-    //     if (['Upcoming', 'Open', 'Voting'].includes(round.status)) {
-    //       const funding = `${round.fundingAmount} ${round.currencyType} × ${round.numWinners}`
-
-    //       let roundToAdd: PropHouseRound = {
-    //         id: Number(round.id),
-    //         title: round.title,
-    //         state: getPropHouseRoundState(round.status),
-    //         funding: funding,
-    //         endTime: getPropHouseRoundTimestamp(round)
-    //       }
-
-    //       if (['Open', 'Voting'].includes(round.status)) {
-    //         roundToAdd.proposals = round.proposals.length
-    //       }
-
-    //       propHouse.push(roundToAdd)
-    //     }
-    //   }
-
-    //   if (propHouse.length > 0) {
-    //     propHouse.sort((a, b) => a.endTime - b.endTime)
-    //   }
-    // } catch {}
-
     let nounsData: Nouns = {
       auction: {
         id: parseInt(data.auctions[0].id),
@@ -190,7 +151,6 @@ const getNounsData = async (req: Request): Promise<Response> => {
       proposals: proposals
     }
 
-    // if (propHouse) nounsData.propHouse = propHouse
     nounsData.propHouse = []
 
     return Response.json(nounsData, {
