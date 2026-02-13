@@ -3,10 +3,12 @@ import { ImageData, getNounData } from '@noundry/nouns-assets'
 import { buildSVG } from '@nouns/sdk'
 import sharp from 'sharp'
 
+const GRAPH_API_KEY = process.env.GRAPH_API_KEY
+
 const { palette } = ImageData
 
 const url =
-  'https://api.goldsky.com/api/public/project_cldf2o9pqagp43svvbk5u3kmo/subgraphs/nouns/prod/gn'
+  'https://gateway.thegraph.com/api/subgraphs/id/5qcR6rAfDMZCVGuZ6DDois7y4zyXqsyqvaqhE6NRRraW'
 const query = `
     query NounsData {
       auctions(where: {settled: false}) {
@@ -26,8 +28,21 @@ const query = `
 
 const getNounsArtData = async (req: Request): Promise<Response> => {
   try {
-    let result: AxiosResponse = await axios.post(url, { query: query })
+    let result: AxiosResponse = await axios.post(
+      url,
+      { query: query },
+      {
+        headers: {
+          Authorization: `Bearer ${GRAPH_API_KEY}`
+        }
+      }
+    )
     const data = result.data.data
+
+    if (result.data.errors && result.data.errors.length > 0) {
+      console.error(result.data.errors)
+      throw new Error('Failed to fetch data')
+    }
 
     const { parts, background } = getNounData(data.auctions[0].noun.seed)
     const svgBinary = buildSVG(parts, palette, background)
